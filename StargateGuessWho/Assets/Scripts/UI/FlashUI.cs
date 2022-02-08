@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlashUI : MonoBehaviour
 {
@@ -8,19 +9,19 @@ public class FlashUI : MonoBehaviour
     public Sprite flashOffSprite;
     public float frequency = 1;
 
-    private SpriteRenderer spriteRenderer;
+    private Image image;
     private bool flashOn;
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
         InvokeRepeating("changeFlash", 2, frequency);
     }
 
     void changeFlash()
     {
         flashOn = !flashOn;
-        spriteRenderer.sprite = flashOn ? flashOnSprite : flashOffSprite;
+        image.sprite = flashOn ? flashOnSprite : flashOffSprite;
     }
 }
