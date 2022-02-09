@@ -25,31 +25,31 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    void CreatePlayerOnServer(string playerName)
+    public void CreatePlayerOnServer(string playerName)
     {
         var message = new NetworkMessage.CreatePlayerMessage(playerName);
         StartCoroutine(GetWebData("http://localhost:7000", message));
     }
 
-    void CreateSessionOnServer()
+    public void CreateSessionOnServer()
     {
         var message = new NetworkMessage.CreateServerMessage(playerAuth);
         StartCoroutine(GetWebData("http://localhost:7000", message));
     }
 
-    void StartSessionOnServer()
+    public void StartSessionOnServer()
     {
         var message = new NetworkMessage.StartRoundMessage(playerAuth, sessionCode);
         StartCoroutine(GetWebData("http://localhost:7000", message));
     }
 
-    void SendCharacterCommand(int characterID, string command)
+    public void SendCharacterCommand(int characterID, string command)
     {
         var message = new NetworkMessage.UpdateSelectionMessage(playerAuth, sessionCode, characterID, command);
         StartCoroutine(GetWebData("http://localhost:7000", message));
     }
 
-    void GetSessionState()
+    public void GetSessionState()
     {
         var message = new NetworkMessage.GetStateMessage(playerAuth, sessionCode);
         StartCoroutine(GetWebData("http://localhost:7000", message));

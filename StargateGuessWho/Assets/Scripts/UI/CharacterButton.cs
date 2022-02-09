@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CharacterButton : MonoBehaviour
 {
@@ -9,14 +10,18 @@ public class CharacterButton : MonoBehaviour
 
     private Image imageRef;
     private bool isEliminated;
-    public GameObject childText;
+    private GameObject childText;
     private Button buttonRef;
+    private NetworkManager networkManager;
+    private Image targetCharacter;
 
     // Start is called before the first frame update
     void Start()
     {
         imageRef = GetComponent<Image>();
         childText = transform.GetChild(0).gameObject;
+        networkManager = FindObjectOfType<NetworkManager>();
+        targetCharacter = GameObject.Find("YourCharacterSelection").GetComponent<Image>();
     }
 
     private void OnEnable()
@@ -44,6 +49,8 @@ public class CharacterButton : MonoBehaviour
     {
         Debug.Log("Test" + buttonID);
         SetEliminated(!isEliminated);
+        networkManager.SendCharacterCommand(buttonID, isEliminated ? "setDown" : "setUp");
+        targetCharacter.sprite = imageRef.sprite;
     }
 
     public void SetEliminated(bool isEliminated)
@@ -60,6 +67,6 @@ public class CharacterButton : MonoBehaviour
             
         }
         childText.SetActive(isEliminated);
-        Debug.Log("Active: " + childText.active);
+        Debug.Log("Active: " + childText.activeSelf);
     }
 }
