@@ -6,22 +6,21 @@ using UnityEngine.EventSystems;
 
 public class CharacterButton : MonoBehaviour
 {
-    public int buttonID;
+    [SerializeField]
+    private int buttonID;
 
     private Image imageRef;
     private bool isEliminated;
     private GameObject childText;
     private Button buttonRef;
-    private NetworkManager networkManager;
-    private Image targetCharacter;
+    private SelectedCharacter targetCharacter;
 
     // Start is called before the first frame update
     void Start()
     {
         imageRef = GetComponent<Image>();
         childText = transform.GetChild(0).gameObject;
-        networkManager = FindObjectOfType<NetworkManager>();
-        targetCharacter = GameObject.Find("YourCharacterSelection").GetComponent<Image>();
+        targetCharacter = GameObject.Find("SelectedCharacterFrame").GetComponent<SelectedCharacter>();
     }
 
     private void OnEnable()
@@ -47,10 +46,7 @@ public class CharacterButton : MonoBehaviour
 
     public void HandleClick()
     {
-        Debug.Log("Test" + buttonID);
-        SetEliminated(!isEliminated);
-        networkManager.SendCharacterCommand(buttonID, isEliminated ? "setDown" : "setUp");
-        targetCharacter.sprite = imageRef.sprite;
+        targetCharacter.SetSelectedCharacter(buttonID, imageRef.sprite);
     }
 
     public void SetEliminated(bool isEliminated)
