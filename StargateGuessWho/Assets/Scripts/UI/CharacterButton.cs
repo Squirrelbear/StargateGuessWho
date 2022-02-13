@@ -20,8 +20,7 @@ public class CharacterButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        imageRef = GetComponent<Image>();
-        childText = transform.GetChild(0).gameObject;
+        
         targetCharacter = GameObject.Find("SelectedCharacterFrame").GetComponent<SelectedCharacter>();
     }
 
@@ -30,9 +29,12 @@ public class CharacterButton : MonoBehaviour
         if(buttonRef == null)
         {
             buttonRef = GetComponent<Button>();
+            imageRef = GetComponent<Image>();
+            childText = transform.GetChild(0).gameObject;
         }
 
         buttonRef.onClick.AddListener(HandleClick);
+        SetEliminated(false);
     }
 
     private void OnDisable()

@@ -19,6 +19,6 @@ public class ToggleButton : MonoBehaviour
             return;
 
         characterButtons[selected.CharacterID].SetEliminated(!characterButtons[selected.CharacterID].IsEliminated);
-        coreGameScreenRef.HandleSelectionToggle(selected.CharacterID, characterButtons[selected.CharacterID].IsEliminated);
+        coreGameScreenRef.HandleSelectionToggle(selected.CharacterID, !characterButtons[selected.CharacterID].IsEliminated);
     }
 }
