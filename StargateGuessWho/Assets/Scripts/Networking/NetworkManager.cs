@@ -37,6 +37,13 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine(GetWebData("http://localhost:7000", message));
     }
 
+    public void JoinSessionOnServer(string sessionCode)
+    {
+        this.sessionCode = sessionCode;
+        var message = new NetworkMessage.JoinServerMessage(playerAuth, sessionCode);
+        StartCoroutine(GetWebData("http://localhost:7000", message));
+    }
+
     public void StartSessionOnServer()
     {
         var message = new NetworkMessage.StartRoundMessage(playerAuth, sessionCode);

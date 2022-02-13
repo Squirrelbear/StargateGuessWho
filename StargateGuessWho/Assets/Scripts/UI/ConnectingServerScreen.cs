@@ -53,7 +53,7 @@ public class ConnectingServerScreen : MonoBehaviour
             else
             {
                 Debug.Log("Player created... Joining Session...");
-                // TODO join session
+                networkManagerRef.JoinSessionOnServer(sessionCodeInputField.text);
             }
         } 
         else if(request is NetworkMessage.CreateServerMessage)
@@ -65,11 +65,18 @@ public class ConnectingServerScreen : MonoBehaviour
         } 
         else if(request is NetworkMessage.JoinServerMessage)
         {
-            // TODO
+            Debug.Log("Session joined...");
+            // TODO need to collect data about other player
+            gameStateManagerRef.TransitionToChooseCharacter();
         }
         else if(request is NetworkMessage.GetStateMessage)
         {
             Debug.Log("Checking server...");
+            if(result.AsArray.Count == 2)
+            {
+                // TODO need to collect data about other player 
+                gameStateManagerRef.TransitionToChooseCharacter();
+            }
         }
     }
 

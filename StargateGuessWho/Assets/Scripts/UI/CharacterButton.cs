@@ -6,11 +6,13 @@ using UnityEngine.EventSystems;
 
 public class CharacterButton : MonoBehaviour
 {
+
+    public bool IsEliminated { get; private set; }
+
     [SerializeField]
     private int buttonID;
 
     private Image imageRef;
-    private bool isEliminated;
     private GameObject childText;
     private Button buttonRef;
     private SelectedCharacter targetCharacter;
@@ -51,7 +53,7 @@ public class CharacterButton : MonoBehaviour
 
     public void SetEliminated(bool isEliminated)
     {
-        this.isEliminated = isEliminated;
+        this.IsEliminated = isEliminated;
         if(isEliminated)
         {
             imageRef.color = new Color(0.4f, 0.4f, 0.4f);

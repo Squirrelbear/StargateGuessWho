@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class ChooseButton : MonoBehaviour
 {
+    [SerializeField]
+    private CoreGameScreen coreGameRef;
+
     private SelectedCharacter selected, yourCharacter;
     private Button buttonRef;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        buttonRef = GetComponent<Button>();
-    }
-
     private void OnEnable()
     {
+        buttonRef = GetComponent<Button>();
         selected = GameObject.Find("SelectedCharacterFrame").GetComponent<SelectedCharacter>();
         yourCharacter = GameObject.Find("YourCharacterSelection").GetComponent<SelectedCharacter>();
 
@@ -36,6 +34,10 @@ public class ChooseButton : MonoBehaviour
     public void HandleButtonPress()
     {
         yourCharacter.SetSelectedCharacter(selected.CharacterID, selected.GetComponent<Image>().sprite);
+        if(selected.CharacterID != -1)
+        {
+            coreGameRef.HandleSelectionChoice(selected.CharacterID);
+        }
     }
 
     public void HandleSelectionChanged(int newCharacterID)

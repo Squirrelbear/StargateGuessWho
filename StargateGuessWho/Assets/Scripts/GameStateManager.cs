@@ -6,8 +6,7 @@ public class GameStateManager : MonoBehaviour
 {
     public enum GameState { StartScreen, CreateJoinScreen, ConnectingToServer, WaitingOtherPlayer, ChooseCharacter, CoreGame, GameEnded, AnyState }
 
-    [SerializeField]
-    private GameState gameState;
+    public GameState gameState { get; private set; }
 
     public delegate void GameStateTransitionEvent(GameState oldState, GameState newState);
     public static event GameStateTransitionEvent OnStateTransition;
