@@ -9,6 +9,9 @@ public class NetworkManager : MonoBehaviour
     public string playerAuth;
     public string sessionCode;
 
+    public delegate void ServerResponseEvent(NetworkMessage.MessageTemplate request, JSONNode result, bool isError, string errorMessage);
+    public static event ServerResponseEvent OnServerResponse;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +22,7 @@ public class NetworkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            CreatePlayerOnServer("Peter");
-        }
+
     }
 
     public void CreatePlayerOnServer(string playerName)
@@ -70,7 +70,7 @@ public class NetworkManager : MonoBehaviour
             Debug.Log("Created player: " + playerAuth);
             // TODO trigger an event
             // TODO Remove this command after testing
-            CreateSessionOnServer();
+            //CreateSessionOnServer();
         }
         else if (requestedMessage is NetworkMessage.CreateServerMessage)
         {
@@ -80,6 +80,7 @@ public class NetworkManager : MonoBehaviour
         }
 
         //Debug.Log("Name: " + node["playerName"] + "\n" + "Auth: " + node["playerAuth"]);
+        OnServerResponse?.Invoke(requestedMessage, node, false, "");
     }
 
     IEnumerator GetWebData(string address, NetworkMessage.MessageTemplate message)
