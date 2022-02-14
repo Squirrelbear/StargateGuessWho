@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class CharacterButton : MonoBehaviour
 {
-
     public bool IsEliminated { get; private set; }
 
     [SerializeField]
@@ -20,7 +19,6 @@ public class CharacterButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         targetCharacter = GameObject.Find("SelectedCharacterFrame").GetComponent<SelectedCharacter>();
     }
 
@@ -42,12 +40,6 @@ public class CharacterButton : MonoBehaviour
         buttonRef.onClick.RemoveListener(HandleClick);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void HandleClick()
     {
         targetCharacter.SetSelectedCharacter(buttonID, imageRef.sprite);
@@ -67,6 +59,6 @@ public class CharacterButton : MonoBehaviour
             
         }
         childText.SetActive(isEliminated);
-        Debug.Log("Active: " + childText.activeSelf);
+        //Debug.Log("Active: " + childText.activeSelf);
     }
 }

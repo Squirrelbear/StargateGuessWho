@@ -51,4 +51,13 @@ public class GameStateManager : MonoBehaviour
     {
         TransitionToState(GameState.GameEnded);
     }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+    }
 }

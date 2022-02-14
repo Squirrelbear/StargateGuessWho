@@ -8,6 +8,7 @@ public class NetworkManager : MonoBehaviour
 {
     public string playerAuth;
     public string sessionCode;
+    public string playerName;
 
     public delegate void ServerResponseEvent(NetworkMessage.MessageTemplate request, JSONNode result, bool isError, string errorMessage);
     public static event ServerResponseEvent OnServerResponse;
@@ -27,6 +28,7 @@ public class NetworkManager : MonoBehaviour
 
     public void CreatePlayerOnServer(string playerName)
     {
+        this.playerName = playerName;
         var message = new NetworkMessage.CreatePlayerMessage(playerName);
         StartCoroutine(GetWebData("http://localhost:7000", message));
     }
