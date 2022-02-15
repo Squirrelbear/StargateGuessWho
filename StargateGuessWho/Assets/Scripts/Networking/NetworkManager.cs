@@ -76,7 +76,7 @@ public class NetworkManager : MonoBehaviour
         else if(requestedMessage is NetworkMessage.CreatePlayerMessage)
         {
             playerAuth = node["playerAuth"];
-            Debug.Log("Created player: " + playerAuth);
+            //Debug.Log("Created player: " + playerAuth);
             // TODO trigger an event
             // TODO Remove this command after testing
             //CreateSessionOnServer();
@@ -84,7 +84,7 @@ public class NetworkManager : MonoBehaviour
         else if (requestedMessage is NetworkMessage.CreateServerMessage)
         {
             sessionCode = node["sessionCode"];
-            Debug.Log("Created session: " + sessionCode);
+            //Debug.Log("Created session: " + sessionCode);
             // TODO trigger an event
         }
 
@@ -103,7 +103,7 @@ public class NetworkManager : MonoBehaviour
         } 
         else
         {
-            Debug.Log(www.downloadHandler.text);
+            //Debug.Log(www.downloadHandler.text);
 
             ProcessServerResponse(www.downloadHandler.text, message);
         }
