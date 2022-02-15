@@ -28,6 +28,44 @@ public class CoreGameScreen : MonoBehaviour
 
     private int otherSolutionID, yourGuessID;
 
+    [SerializeField]
+    private Text endScreenPlayerNameYours;
+
+    [SerializeField]
+    private Text endScreenPlayerNameOther;
+
+    [SerializeField]
+    private SelectedCharacter endScreenChosenYours;
+
+    [SerializeField]
+    private SelectedCharacter endScreenChosenOther;
+
+    [SerializeField]
+    private SelectedCharacter endScreenGuessedYours;
+
+    [SerializeField]
+    private SelectedCharacter endScreenGuessedOther;
+
+    [SerializeField]
+    private Text endScreenYourScore;
+
+    [SerializeField]
+    private Text endScreenOtherScore;
+
+    [SerializeField]
+    private Text endScreenDrawsScore;
+
+    [SerializeField]
+    private Text endScreenOutcomeText;
+
+    [SerializeField]
+    private List<CharacterButton> characterButtons;
+
+    private int yourScore = 0, otherScore = 0, draws = 0;
+
+    [SerializeField]
+    private GameObject endGameScreen;
+
     private void OnEnable()
     {
         NetworkManager.OnServerResponse += HandleNetworkResponse;
@@ -81,16 +119,26 @@ public class CoreGameScreen : MonoBehaviour
                 }
                 else
                 {
-                    UpdateOtherHiddenNumber(player0);
+                    if (player0["guessID"] == -1)
+                    {
+                        UpdateOtherHiddenNumber(player0);
+                    }
+                    else if (!otherPlayerFailedGuess.activeSelf)
+                    {
+                        // TODO need to check if it was an actual fail
+                        otherPlayerFailedGuess.SetActive(true);
+                        otherPlayerStatusPrefix.SetActive(false);
+                        otherPlayerStatusText.gameObject.SetActive(false);
+                    }
 
                     otherSolutionID = player0["chosenID"];
                 }
 
                 // Both players have made a guess
-                if (player0["guessID"] != -1 && player1["guessID"] != -1)
+                if ((player0["guessID"] != -1 && player1["guessID"] != -1))
                 {
-                    Debug.Log("Transitioning to end...");
-                    gameStateManagerRef.TransitionToGameEnded();
+                    EndRound(player0["name"] == networkManagerRef.playerName ? player0 : player1,
+                        player0["name"] == networkManagerRef.playerName ? player1 : player0);
                 }
             }
         } 
@@ -134,5 +182,45 @@ public class CoreGameScreen : MonoBehaviour
             }
         }
         otherPlayerStatusText.text = count + "/" + data["characterStates"].Count;
+    }
+
+    private void EndRound(JSONNode yourPlayer, JSONNode otherPlayer)
+    {
+        endGameScreen.SetActive(true);
+
+        endScreenPlayerNameYours.text = yourPlayer["name"];
+        endScreenPlayerNameOther.text = otherPlayer["name"];
+
+        int yourChosenID = yourPlayer["chosenID"];
+        int yourGuessID = yourPlayer["guessID"];
+        endScreenChosenYours.SetSelectedCharacter(yourChosenID, characterButtons[yourChosenID].getSprite());
+        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, characterButtons[yourGuessID].getSprite());
+
+        int otherChosenID = otherPlayer["chosenID"];
+        int otherGuessID = otherPlayer["guessID"];
+        endScreenChosenOther.SetSelectedCharacter(otherChosenID, characterButtons[otherChosenID].getSprite());
+        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, characterButtons[otherGuessID].getSprite());
+
+        if((yourChosenID == otherGuessID && otherChosenID == yourGuessID)
+            || (yourChosenID != otherGuessID && otherChosenID != yourGuessID))
+        {
+            endScreenOutcomeText.text = "Draw!";
+            draws++;
+            endScreenDrawsScore.text = "Draws: " + draws;
+        } 
+        else if(yourChosenID == otherGuessID)
+        {
+            endScreenOutcomeText.text = "You Lost!";
+            otherScore++;
+            endScreenOtherScore.text = "Other's wins: " + otherScore;
+        }
+        else
+        {
+            endScreenOutcomeText.text = "You Win!";
+            yourScore++;
+            endScreenYourScore.text = "Your wins: " + yourScore;
+        }
+
+        gameStateManagerRef.TransitionToGameEnded();
     }
 }

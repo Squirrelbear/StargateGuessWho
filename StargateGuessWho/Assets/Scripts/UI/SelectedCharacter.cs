@@ -13,13 +13,19 @@ public class SelectedCharacter : MonoBehaviour
 
     public int CharacterID { get; private set; }
 
+    [SerializeField]
     private Image selectedImageRef;
 
+    [SerializeField]
+    private bool resetOnEnable = true;
+
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        selectedImageRef = GetComponent<Image>();
-        ResetSelectedCharacter();
+        if (resetOnEnable)
+        {
+            ResetSelectedCharacter();
+        }
     }
 
     public void SetSelectedCharacter(int characterID, Sprite characterImage)

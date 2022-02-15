@@ -45,6 +45,11 @@ public class CharacterButton : MonoBehaviour
         targetCharacter.SetSelectedCharacter(buttonID, imageRef.sprite);
     }
 
+    public Sprite getSprite()
+    {
+        return imageRef.sprite;
+    }
+
     public void SetEliminated(bool isEliminated)
     {
         this.IsEliminated = isEliminated;
