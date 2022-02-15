@@ -16,10 +16,17 @@ public class CoreGameScreen : MonoBehaviour
     private Text otherPlayerStatusText;
 
     [SerializeField]
+    private GameObject otherPlayerStatusPrefix;
+    [SerializeField]
+    private GameObject otherPlayerFailedGuess;
+
+    [SerializeField]
     private GameObject validatingStatusText;
 
     [SerializeField]
     private GameObject failedGuessTipText;
+
+    private int otherSolutionID, yourGuessID;
 
     private void OnEnable()
     {
@@ -58,23 +65,43 @@ public class CoreGameScreen : MonoBehaviour
                 // Count the number of characters still available to choose for the other player.
                 if (player0["name"] == networkManagerRef.playerName)
                 {
-                    UpdateOtherHiddenNumber(player1);
+                    if (player1["guessID"] == -1)
+                    {
+                        UpdateOtherHiddenNumber(player1);
+                    }
+                    else if(!otherPlayerFailedGuess.activeSelf)
+                    {
+                        // TODO need to check if it was an actual fail
+                        otherPlayerFailedGuess.SetActive(true);
+                        otherPlayerStatusPrefix.SetActive(false);
+                        otherPlayerStatusText.gameObject.SetActive(false);
+                    }
 
-                    failedGuessTipText.SetActive(player0["guessID"] != -1 && player0["guessID"] != player1["chosenID"]);
-                    validatingStatusText.SetActive(validatingStatusText.activeSelf && player0["guessID"] == -1);
+                    otherSolutionID = player1["chosenID"];
                 }
                 else
                 {
                     UpdateOtherHiddenNumber(player0);
 
-                    failedGuessTipText.SetActive(player1["guessID"] != -1 && player1["guessID"] != player0["chosenID"]);
-                    validatingStatusText.SetActive(validatingStatusText.activeSelf && player1["guessID"] == -1);
+                    otherSolutionID = player0["chosenID"];
                 }
 
                 // Both players have made a guess
                 if (player0["guessID"] != -1 && player1["guessID"] != -1)
                 {
+                    Debug.Log("Transitioning to end...");
                     gameStateManagerRef.TransitionToGameEnded();
+                }
+            }
+        } 
+        else if(request is NetworkMessage.UpdateSelectionMessage)
+        {
+            if ((request as NetworkMessage.UpdateSelectionMessage).CharacterAction == "guess")
+            {
+                validatingStatusText.SetActive(false);
+                if (yourGuessID != otherSolutionID)
+                {
+                    failedGuessTipText.SetActive(true);
                 }
             }
         }
@@ -92,6 +119,7 @@ public class CoreGameScreen : MonoBehaviour
 
     public void HandleSelectionGuess(int characterID)
     {
+        yourGuessID = characterID;
         networkManagerRef.SendCharacterCommand(characterID, "guess");
     }
 
