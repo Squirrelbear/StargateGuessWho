@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
+using UnityEngine.UI;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class NetworkManager : MonoBehaviour
     public delegate void ServerResponseEvent(NetworkMessage.MessageTemplate request, JSONNode result, bool isError, string errorMessage);
     public static event ServerResponseEvent OnServerResponse;
 
+    [SerializeField]
+    private GameObject errorOverlay;
+
+    [SerializeField]
+    private Text errorText;
+
+    [SerializeField]
+    private GameStateManager gameStateManager;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +79,9 @@ public class NetworkManager : MonoBehaviour
         if(node.HasKey("error"))
         {
             Debug.Log("ERROR: " + node["error"]);
+            errorText.text = node["error"];
+            errorOverlay.SetActive(true);
+            gameStateManager.TransitionToStartScreen();
             // TODO: Maybe resend the request?
             return;
         } 
@@ -100,6 +112,9 @@ public class NetworkManager : MonoBehaviour
         if(www.result != UnityWebRequest.Result.Success)
         {
             Debug.Log("Something went wrong: " + www.error);
+            errorText.text = www.error;
+            errorOverlay.SetActive(true);
+            gameStateManager.TransitionToStartScreen();
         } 
         else
         {
