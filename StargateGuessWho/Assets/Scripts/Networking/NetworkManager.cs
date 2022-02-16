@@ -10,6 +10,7 @@ public class NetworkManager : MonoBehaviour
     public string playerAuth;
     public string sessionCode;
     public string playerName;
+    public int gameNum;
 
     public delegate void ServerResponseEvent(NetworkMessage.MessageTemplate request, JSONNode result, bool isError, string errorMessage);
     public static event ServerResponseEvent OnServerResponse;
@@ -37,6 +38,7 @@ public class NetworkManager : MonoBehaviour
 
     public void CreatePlayerOnServer(string playerName)
     {
+        gameNum = -1;
         this.playerName = playerName;
         var message = new NetworkMessage.CreatePlayerMessage(playerName);
         StartCoroutine(GetWebData("http://localhost:7000", message));
@@ -76,7 +78,7 @@ public class NetworkManager : MonoBehaviour
     void ProcessServerResponse(string rawResponse, NetworkMessage.MessageTemplate requestedMessage)
     {
         JSONNode node = JSONNode.Parse(rawResponse);
-        if(node.HasKey("error"))
+        if (node.HasKey("error"))
         {
             Debug.Log("ERROR: " + node["error"]);
             errorText.text = node["error"];
@@ -84,8 +86,8 @@ public class NetworkManager : MonoBehaviour
             gameStateManager.TransitionToStartScreen();
             // TODO: Maybe resend the request?
             return;
-        } 
-        else if(requestedMessage is NetworkMessage.CreatePlayerMessage)
+        }
+        else if (requestedMessage is NetworkMessage.CreatePlayerMessage)
         {
             playerAuth = node["playerAuth"];
             //Debug.Log("Created player: " + playerAuth);
@@ -98,6 +100,13 @@ public class NetworkManager : MonoBehaviour
             sessionCode = node["sessionCode"];
             //Debug.Log("Created session: " + sessionCode);
             // TODO trigger an event
+        }
+        else if (requestedMessage is NetworkMessage.GetStateMessage)
+        {
+            if (gameNum == -1)
+            {
+                gameNum = node[0]["gameNum"];
+            }
         }
 
         //Debug.Log("Name: " + node["playerName"] + "\n" + "Auth: " + node["playerAuth"]);

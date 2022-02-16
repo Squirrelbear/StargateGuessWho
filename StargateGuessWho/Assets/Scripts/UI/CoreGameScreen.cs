@@ -95,6 +95,7 @@ public class CoreGameScreen : MonoBehaviour
                 // If both players have selected characters
                 if (player0["chosenID"] != -1 && player1["chosenID"] != -1)
                 {
+                    otherSolutionID = yourGuessID = -1;
                     gameStateManagerRef.TransitionToCoreGame();
                 }
             }
