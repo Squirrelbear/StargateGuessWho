@@ -24,10 +24,12 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     private GameStateManager gameStateManager;
 
+    private string serverURL = "SET THIS VARIABLE TO YOUR SERVER";
+
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(GetWebData("http://localhost:7000", "?action=createPlayer&playerName=Peter"));
+        //StartCoroutine(GetWebData(serverURL, "?action=createPlayer&playerName=Peter"));
     }
 
     // Update is called once per frame
@@ -41,38 +43,38 @@ public class NetworkManager : MonoBehaviour
         gameNum = -1;
         this.playerName = playerName;
         var message = new NetworkMessage.CreatePlayerMessage(playerName);
-        StartCoroutine(GetWebData("http://localhost:7000", message));
+        StartCoroutine(GetWebData(serverURL, message));
     }
 
     public void CreateSessionOnServer()
     {
         var message = new NetworkMessage.CreateServerMessage(playerAuth);
-        StartCoroutine(GetWebData("http://localhost:7000", message));
+        StartCoroutine(GetWebData(serverURL, message));
     }
 
     public void JoinSessionOnServer(string sessionCode)
     {
         this.sessionCode = sessionCode;
         var message = new NetworkMessage.JoinServerMessage(playerAuth, sessionCode);
-        StartCoroutine(GetWebData("http://localhost:7000", message));
+        StartCoroutine(GetWebData(serverURL, message));
     }
 
     public void StartSessionOnServer()
     {
         var message = new NetworkMessage.StartRoundMessage(playerAuth, sessionCode);
-        StartCoroutine(GetWebData("http://localhost:7000", message));
+        StartCoroutine(GetWebData(serverURL, message));
     }
 
     public void SendCharacterCommand(int characterID, string command)
     {
         var message = new NetworkMessage.UpdateSelectionMessage(playerAuth, sessionCode, characterID, command);
-        StartCoroutine(GetWebData("http://localhost:7000", message));
+        StartCoroutine(GetWebData(serverURL, message));
     }
 
     public void GetSessionState()
     {
         var message = new NetworkMessage.GetStateMessage(playerAuth, sessionCode);
-        StartCoroutine(GetWebData("http://localhost:7000", message));
+        StartCoroutine(GetWebData(serverURL, message));
     }
 
     void ProcessServerResponse(string rawResponse, NetworkMessage.MessageTemplate requestedMessage)
