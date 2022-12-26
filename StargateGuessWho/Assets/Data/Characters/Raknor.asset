@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Raknor
+  m_EditorClassIdentifier: Assembly-CSharp::Character
+  characterName: Rak'nor
+  characterSprite: {fileID: 21300000, guid: 29e7ea0f66ee17e45915502adc180ee2, type: 3}
+  seriesTag: 0
+  raceTag: 1
+  isAntagonist: 0
+  tags: 
