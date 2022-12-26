@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: CamileWray
+  m_EditorClassIdentifier: Assembly-CSharp::Character
+  characterName: Camile Wray
+  characterSprite: {fileID: 21300000, guid: 1c1d4462606e54449926ac034cfa70f9, type: 3}
+  seriesTag: 2
+  raceTag: 2
+  isAntagonist: 0
+  tags: 
