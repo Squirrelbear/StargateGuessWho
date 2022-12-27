@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RobertMakepeace
   m_EditorClassIdentifier: Assembly-CSharp::Character
   characterName: Colonel Robert Makepeace
-  characterSprite: {fileID: 0}
+  characterSprite: {fileID: 21300000, guid: 00eb7d842fcefbe409f919b1ba209f2c, type: 3}
   seriesTag: 0
   raceTag: 2
   isAntagonist: 0
