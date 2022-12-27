@@ -15,6 +15,6 @@ MonoBehaviour:
   characterName: Travell
   characterSprite: {fileID: 21300000, guid: 8c5fc30c4c18eef478bb903ea66e56c4, type: 3}
   seriesTag: 0
-  raceTag: 0
+  raceTag: 20
   isAntagonist: 0
   tags: 

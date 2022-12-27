@@ -123,6 +123,8 @@ public enum RaceTag : int
     [StringValue("Genii")]
     Genii,
     [StringValue("Wraith")]
-    Wraith
+    Wraith,
+    [StringValue("Tollan")]
+    Tollan
 }
 

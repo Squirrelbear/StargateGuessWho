@@ -15,6 +15,6 @@ MonoBehaviour:
   characterName: Narim
   characterSprite: {fileID: 21300000, guid: 747ab4cac60c9734abb2dabb981c6b43, type: 3}
   seriesTag: 0
-  raceTag: 0
+  raceTag: 20
   isAntagonist: 0
   tags: 
