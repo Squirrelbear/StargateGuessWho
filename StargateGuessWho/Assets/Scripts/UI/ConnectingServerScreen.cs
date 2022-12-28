@@ -72,7 +72,8 @@ public class ConnectingServerScreen : MonoBehaviour
         else if(request is NetworkMessage.GetStateMessage)
         {
             Debug.Log("Checking server...");
-            if(result.AsArray.Count == 2)
+            // Wait until there are two player objects and a config object
+            if(result.AsArray.Count == 3)
             {
                 // TODO need to collect data about other player 
                 gameStateManagerRef.TransitionToChooseCharacter();

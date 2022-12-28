@@ -77,6 +77,12 @@ public class NetworkManager : MonoBehaviour
         StartCoroutine(GetWebData(serverURL, message));
     }
 
+    public void SendHostCharacterSetChange(string characterSet)
+    {
+        var message = new NetworkMessage.SetCharacterCollectionMessage(playerAuth, sessionCode, characterSet);
+        StartCoroutine(GetWebData(serverURL, message));
+    }
+
     void ProcessServerResponse(string rawResponse, NetworkMessage.MessageTemplate requestedMessage)
     {
         JSONNode node = JSONNode.Parse(rawResponse);
