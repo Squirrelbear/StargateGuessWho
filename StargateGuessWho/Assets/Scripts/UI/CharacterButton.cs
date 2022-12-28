@@ -15,6 +15,7 @@ public class CharacterButton : MonoBehaviour
     private GameObject childText;
     private Button buttonRef;
     private SelectedCharacter targetCharacter;
+    private string characterName = "Error Unknown";
 
     // Start is called before the first frame update
     void Start()
@@ -42,12 +43,17 @@ public class CharacterButton : MonoBehaviour
 
     public void HandleClick()
     {
-        targetCharacter.SetSelectedCharacter(buttonID, imageRef.sprite);
+        targetCharacter.SetSelectedCharacter(buttonID, imageRef.sprite, characterName);
     }
 
     public Sprite getSprite()
     {
         return imageRef.sprite;
+    }
+
+    public string getCharacterName()
+    {
+        return characterName;
     }
 
     public void SetEliminated(bool isEliminated)

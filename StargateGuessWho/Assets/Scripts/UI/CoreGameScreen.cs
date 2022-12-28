@@ -194,13 +194,13 @@ public class CoreGameScreen : MonoBehaviour
 
         int yourChosenID = yourPlayer["chosenID"];
         int yourGuessID = yourPlayer["guessID"];
-        endScreenChosenYours.SetSelectedCharacter(yourChosenID, characterButtons[yourChosenID].getSprite());
-        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, characterButtons[yourGuessID].getSprite());
+        endScreenChosenYours.SetSelectedCharacter(yourChosenID, characterButtons[yourChosenID].getSprite(), characterButtons[yourChosenID].getCharacterName());
+        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, characterButtons[yourGuessID].getSprite(), characterButtons[yourGuessID].getCharacterName());
 
         int otherChosenID = otherPlayer["chosenID"];
         int otherGuessID = otherPlayer["guessID"];
-        endScreenChosenOther.SetSelectedCharacter(otherChosenID, characterButtons[otherChosenID].getSprite());
-        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, characterButtons[otherGuessID].getSprite());
+        endScreenChosenOther.SetSelectedCharacter(otherChosenID, characterButtons[otherChosenID].getSprite(), characterButtons[otherChosenID].getCharacterName());
+        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, characterButtons[otherGuessID].getSprite(), characterButtons[otherGuessID].getCharacterName());
 
         if((yourChosenID == otherGuessID && otherChosenID == yourGuessID)
             || (yourChosenID != otherGuessID && otherChosenID != yourGuessID))
