@@ -8046,6 +8046,7 @@ MonoBehaviour:
   testConvertCurrentCollectionButton: 0
   loadCurrentCharactersAsDefault: 0
   reverseCharacterCollectionTest: 0
+  generateRandomCollection: 0
   references:
     version: 1
     00000000:

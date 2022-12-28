@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -81,6 +82,38 @@ public class CharacterDatabase : MonoBehaviour
         return -1;
     }
 
+    public List<int> generateRandomCharacterIDs(List<int> validIDs)
+    {
+        List<int> resultIDs = new List<int>(validIDs);
+        int i = 0;
+        int t = resultIDs.Count;
+        int r = 0;
+        int p = 0;
+        resultIDs.AddRange(validIDs);
+
+        while (i < t)
+        {
+            r = Random.Range(i, resultIDs.Count);
+            p = resultIDs[i];
+            resultIDs[i] = resultIDs[r];
+            resultIDs[r] = p;
+            i++;
+        }
+
+        return resultIDs.Take(20).ToList();
+    }
+
+    public List<int> getListOfAllValidCharacterIDs()
+    {
+        List<int> resultIDs = new List<int>();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            resultIDs.Add(i);
+        }
+
+        return resultIDs;
+    }
+
     public void makeCurrentCharacterCollectionReal()
     {
         if (currentCollection == null)
@@ -148,6 +181,16 @@ public class CharacterDatabase : MonoBehaviour
         currentCollection = collection;
     }
 
+    private void testRandomiseCharacterCollection()
+    {
+        List<int> allValidIDs = getListOfAllValidCharacterIDs();
+        List<int> randomSelectionOnly = generateRandomCharacterIDs(allValidIDs);
+        int[] characterIDs = randomSelectionOnly.ToArray();
+        CharacterCollection collection = createCharacterCollectionFromIDs(characterIDs);
+
+        currentCollection = collection;
+    }
+
 
     private void reloadCharacterList()
     {
@@ -174,6 +217,7 @@ public class CharacterDatabase : MonoBehaviour
     public bool testConvertCurrentCollectionButton = false;
     public bool loadCurrentCharactersAsDefault = false;
     public bool reverseCharacterCollectionTest = false;
+    public bool generateRandomCollection = false;
 
     void OnValidate()
     {
@@ -210,6 +254,13 @@ public class CharacterDatabase : MonoBehaviour
             currentCollection.characters.Reverse();
 
             reverseCharacterCollectionTest = false;
+        }
+
+        if (generateRandomCollection)
+        {
+            testRandomiseCharacterCollection();
+
+            generateRandomCollection = false;
         }
     }
 #endif
