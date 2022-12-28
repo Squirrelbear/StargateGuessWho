@@ -51,6 +51,34 @@ public class CharacterCollection
         return result;
     }
 
+    public bool hasValidCollection()
+    {
+        if(characters == null || characters.Count != 20)
+        {
+            return false;
+        }
+
+        foreach (CharacterDatabaseEntry characterReference in characters)
+        {
+            if (characterReference.character == null)
+            {
+                return false;
+            }
+        }
+
+        IEnumerable<string> duplicatedCharacters = from c in characters
+                            group c by c.character.name into g
+                            where g.Count() > 1
+                            select g.Key;
+
+        if (duplicatedCharacters.Any())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     static int[] hexStringToCharacterIDList(string idsString)
     {
         // Based on: https://stackoverflow.com/questions/23130382/split-string-by-character-count-and-store-in-string-array

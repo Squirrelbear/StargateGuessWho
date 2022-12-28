@@ -693,7 +693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 6
+  buttonID: 7
+  characterName: General West
 --- !u!114 &134763148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,7 +844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 16
+  buttonID: 17
+  characterName: Selmak / Jacob Carter
 --- !u!114 &164934262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,7 +1960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 8
+  buttonID: 6
+  characterName: General Hank Landry
 --- !u!114 &392050541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2650,6 +2653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 2
+  characterName: Bra'tac
 --- !u!114 &468078443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3122,6 +3126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 10
+  characterName: Janet Fraiser
 --- !u!114 &527048226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3429,6 +3434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 3
+  characterName: Daniel Jackson
 --- !u!114 &575760073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4202,6 +4208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 1
+  characterName: Ba'al
 --- !u!114 &673213939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5396,7 +5403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 14
+  buttonID: 13
+  characterName: Nirrti
 --- !u!114 &879135015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5629,6 +5637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 0
+  characterName: Anubis
 --- !u!114 &891354654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5696,7 +5705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 18
+  buttonID: 16
+  characterName: Samantha Carter
 --- !u!114 &898735143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6750,6 +6760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 4
+  characterName: Fifth
 --- !u!114 &1050929874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8009,8 +8020,32 @@ MonoBehaviour:
   currentCollection:
     id: 0
   loadedCollections: []
+  characterButtons:
+  - {fileID: 891354653}
+  - {fileID: 673213938}
+  - {fileID: 468078442}
+  - {fileID: 575760072}
+  - {fileID: 1050929873}
+  - {fileID: 1860177420}
+  - {fileID: 134763147}
+  - {fileID: 1754031600}
+  - {fileID: 392050540}
+  - {fileID: 2137624525}
+  - {fileID: 527048225}
+  - {fileID: 1580316531}
+  - {fileID: 1488077939}
+  - {fileID: 2029293996}
+  - {fileID: 879135014}
+  - {fileID: 2123028060}
+  - {fileID: 164934261}
+  - {fileID: 1449953929}
+  - {fileID: 898735142}
+  - {fileID: 1454673239}
   loadAllCharactersButton: 0
   testInitDefaultCharacterCollection: 0
+  testConvertCurrentCollectionButton: 0
+  loadCurrentCharactersAsDefault: 0
+  reverseCharacterCollectionTest: 0
   references:
     version: 1
     00000000:
@@ -9003,7 +9038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 17
+  buttonID: 19
+  characterName: Vala Mal Doran
 --- !u!114 &1449953930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9320,7 +9356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 19
+  buttonID: 18
+  characterName: Teal'c
 --- !u!114 &1454673240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9628,7 +9665,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 12
+  buttonID: 14
+  characterName: Prior (Damaris)
 --- !u!114 &1488077940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10312,7 +10350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 11
+  buttonID: 12
+  characterName: Lord Yu
 --- !u!114 &1580316532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11568,7 +11607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 7
+  buttonID: 9
+  characterName: Jack O'neill
 --- !u!114 &1754031601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12535,6 +12575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 5
+  characterName: General George Hammond
 --- !u!114 &1860177421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13407,7 +13448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 13
+  buttonID: 11
+  characterName: Jonas Quinn
 --- !u!114 &2029293997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14019,6 +14061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonID: 15
+  characterName: Rodney McKay
 --- !u!114 &2123028061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14522,7 +14565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a006c7f526b5d8b49a84a91cc273baa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonID: 9
+  buttonID: 8
+  characterName: Hathor
 --- !u!114 &2137624526
 MonoBehaviour:
   m_ObjectHideFlags: 0

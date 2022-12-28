@@ -17,6 +17,9 @@ public class CharacterDatabase : MonoBehaviour
     [SerializeReference]
     private List<CharacterCollection> loadedCollections;
 
+    [SerializeReference]
+    private List<CharacterButton> characterButtons;
+
     public CharacterCollection createCharacterCollectionFromIDs(int[] ids)
     {
         Debug.Assert(ids != null);
@@ -76,6 +79,33 @@ public class CharacterDatabase : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void makeCurrentCharacterCollectionReal()
+    {
+        if (currentCollection == null)
+        {
+            Debug.LogAssertion("Failed to set characters because collection does not exist.");
+            return;
+        }
+
+        if (currentCollection.hasValidCollection() == false)
+        {
+            Debug.LogAssertion("Invalid collection!");
+            return;
+        }
+
+        if (characterButtons == null || characterButtons.Count != 20)
+        {
+            Debug.LogAssertion("Invalid character buttons!");
+            return;
+        }
+
+        foreach (CharacterButton button in characterButtons)
+        {
+            Character character = currentCollection.characters[button.getGridID()].character;
+            button.setToCharacter(character);
+        }
     }
 
     public static string[] getDefaultCharacterCollectionNames()
@@ -142,6 +172,8 @@ public class CharacterDatabase : MonoBehaviour
     public bool loadAllCharactersButton = false;
     public bool testInitDefaultCharacterCollection = false;
     public bool testConvertCurrentCollectionButton = false;
+    public bool loadCurrentCharactersAsDefault = false;
+    public bool reverseCharacterCollectionTest = false;
 
     void OnValidate()
     {
@@ -164,6 +196,20 @@ public class CharacterDatabase : MonoBehaviour
             currentCollection.testConvert();
 
             testConvertCurrentCollectionButton = false;
+        }
+
+        if (loadCurrentCharactersAsDefault)
+        {
+            makeCurrentCharacterCollectionReal();
+
+            loadCurrentCharactersAsDefault = false;
+        }
+
+        if (reverseCharacterCollectionTest)
+        {
+            currentCollection.characters.Reverse();
+
+            reverseCharacterCollectionTest = false;
         }
     }
 #endif

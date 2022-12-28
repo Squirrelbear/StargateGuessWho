@@ -15,6 +15,7 @@ public class CharacterButton : MonoBehaviour
     private GameObject childText;
     private Button buttonRef;
     private SelectedCharacter targetCharacter;
+    [SerializeField]
     private string characterName = "Error Unknown";
 
     // Start is called before the first frame update
@@ -54,6 +55,18 @@ public class CharacterButton : MonoBehaviour
     public string getCharacterName()
     {
         return characterName;
+    }
+
+    public int getGridID()
+    {
+        return buttonID;
+    }
+
+    public void setToCharacter(Character character)
+    {
+        Image imageRef = GetComponent<Image>();
+        imageRef.sprite = character.characterSprite;
+        characterName = character.characterName;
     }
 
     public void SetEliminated(bool isEliminated)
