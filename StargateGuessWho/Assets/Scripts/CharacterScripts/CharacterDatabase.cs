@@ -141,6 +141,7 @@ public class CharacterDatabase : MonoBehaviour
 
     public bool loadAllCharactersButton = false;
     public bool testInitDefaultCharacterCollection = false;
+    public bool testConvertCurrentCollectionButton = false;
 
     void OnValidate()
     {
@@ -156,6 +157,13 @@ public class CharacterDatabase : MonoBehaviour
             testLoadDefaultCharacterCollection();
 
             testInitDefaultCharacterCollection = false;
+        }
+
+        if (testConvertCurrentCollectionButton)
+        {
+            currentCollection.testConvert();
+
+            testConvertCurrentCollectionButton = false;
         }
     }
 #endif
