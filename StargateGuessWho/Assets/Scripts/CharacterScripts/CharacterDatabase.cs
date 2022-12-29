@@ -21,20 +21,28 @@ public class CharacterDatabase : MonoBehaviour
     [SerializeReference]
     private List<CharacterButton> characterButtons;
 
+    public List<Character> getAllCharacters()
+    {
+        return characters;
+    }
+
     public CharacterCollection createCharacterCollectionFromIDs(int[] ids)
     {
         Debug.Assert(ids != null);
-        Debug.Assert(ids.Length == 20);
+        Debug.Assert(ids.Length >= 20);
+
+        List<int> idsCopy = new List<int>(ids);
+        idsCopy = generateRandomCharacterIDs(idsCopy);
 
         CharacterCollection collection = new CharacterCollection();
 
-        for (int i = 0; i < ids.Length; i++)
+        for (int i = 0; i < idsCopy.Count; i++)
         {
-            Debug.Assert(ids[i] >= 0 && ids[i] < characters.Count);
+            Debug.Assert(idsCopy[i] >= 0 && idsCopy[i] < characters.Count);
 
             CharacterDatabaseEntry databaseEntry = new CharacterDatabaseEntry();
-            databaseEntry.characterID = ids[i];
-            databaseEntry.character = characters[ids[i]];
+            databaseEntry.characterID = idsCopy[i];
+            databaseEntry.character = characters[idsCopy[i]];
 
             collection.characters.Add(databaseEntry);
         }
@@ -45,7 +53,6 @@ public class CharacterDatabase : MonoBehaviour
     public int[] createCharacterIDListFromNames(string[] names)
     {
         Debug.Assert(names != null);
-        Debug.Assert(names.Length == 20);
 
         int[] resultIDs = new int[names.Length];
 
@@ -60,7 +67,7 @@ public class CharacterDatabase : MonoBehaviour
     public CharacterCollection createCharacterCollectionFromNames(string[] names)
     {
         Debug.Assert(names != null);
-        Debug.Assert(names.Length == 20);
+        Debug.Assert(names.Length >= 20);
 
         int[] characterIDs = createCharacterIDListFromNames(names);
 
@@ -160,6 +167,118 @@ public class CharacterDatabase : MonoBehaviour
         result[18] = "Tealc";
         result[19] = "ValaMalDoran";
 
+        return result;
+    }
+
+    List<int> getIDsMatchingAnyTag(CharacterTag[] tags)
+    {
+        List<int> result = new List<int>();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (characters[i].hasAnyTag(tags))
+            {
+                result.Add(i);
+            }
+        }
+        return result;
+    }
+
+    List<int> getIDsMatchingSeries(SeriesTag series)
+    {
+        List<int> result = new List<int>();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (characters[i].seriesTag == series)
+            {
+                result.Add(i);
+            }
+        }
+        return result;
+    }
+
+    List<int> getIDsMatchingRace(RaceTag raceTag)
+    {
+        List<int> result = new List<int>();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (characters[i].raceTag == raceTag)
+            {
+                result.Add(i);
+            }
+        }
+        return result;
+    }
+
+    List<int> getIDsMatchingAntagonist(bool isAntagonist)
+    {
+        List<int> result = new List<int>();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            if (characters[i].isAntagonist == isAntagonist)
+            {
+                result.Add(i);
+            }
+        }
+        return result;
+    }
+
+    List<int> collectIDsMatchingCondition(List<int> characterIDs, CharacterTag[] tags, bool matchAny)
+    {
+        List<int> result = new List<int>();
+        foreach (int characterID in characterIDs)
+        {
+            if (characters[characterID].hasAnyTag(tags) == matchAny)
+            {
+                result.Add(characterID);
+            }
+        }
+        return result;
+    }
+
+    List<int> collectIDsMatchingCondition(List<int> characterIDs, SeriesTag seriesTag, bool matchAny)
+    {
+        List<int> result = new List<int>();
+        foreach (int characterID in characterIDs)
+        {
+            if (matchAny && characters[characterID].seriesTag == seriesTag)
+            {
+                result.Add(characterID);
+            }
+            else if (matchAny == false && characters[characterID].seriesTag != seriesTag)
+            {
+                result.Add(characterID);
+            }
+        }
+        return result;
+    }
+
+    List<int> collectIDsMatchingCondition(List<int> characterIDs, RaceTag raceTag, bool matchAny)
+    {
+        List<int> result = new List<int>();
+        foreach (int characterID in characterIDs)
+        {
+            if (matchAny && characters[characterID].raceTag == raceTag)
+            {
+                result.Add(characterID);
+            }
+            else if (matchAny == false && characters[characterID].raceTag != raceTag)
+            {
+                result.Add(characterID);
+            }
+        }
+        return result;
+    }
+
+    List<int> collectIDsMatchingCondition(List<int> characterIDs, bool isAntagonist)
+    {
+        List<int> result = new List<int>();
+        foreach (int characterID in characterIDs)
+        {
+            if (characters[characterID].isAntagonist == isAntagonist)
+            {
+                result.Add(characterID);
+            }
+        }
         return result;
     }
 

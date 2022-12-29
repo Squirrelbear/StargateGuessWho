@@ -10,4 +10,22 @@ public class Character : ScriptableObject
     public RaceTag raceTag;
     public bool isAntagonist;
     public List<CharacterTag> tags;
+
+    public bool hasAnyTag(CharacterTag[] tags)
+    {
+        for (int i = 0; i < tags.Length; i++)
+        {
+            if (hasTag(tags[i]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool hasTag(CharacterTag tag)
+    {
+        return tags.Contains(tag);
+    }
 }
