@@ -51,10 +51,16 @@ public class CharacterCollection
         return result;
     }
 
-    public bool hasValidCollection()
+    public bool hasValidCollection(out string error)
     {
-        if(characters == null || characters.Count != 20)
+        if (characters == null)
         {
+            error = "No characters!";
+        }
+
+        if (characters.Count != 20)
+        {
+            error = string.Format("Count != 20: {0}", characters.Count);
             return false;
         }
 
@@ -62,6 +68,7 @@ public class CharacterCollection
         {
             if (characterReference.character == null)
             {
+                error = string.Format("Null Character: {0}", characterReference.characterID);
                 return false;
             }
         }
@@ -73,9 +80,11 @@ public class CharacterCollection
 
         if (duplicatedCharacters.Any())
         {
+            error = string.Format("Duplicates: {0} [{1}]", duplicatedCharacters.Count(), string.Join(", ", duplicatedCharacters));
             return false;
         }
 
+        error = "";
         return true;
     }
 

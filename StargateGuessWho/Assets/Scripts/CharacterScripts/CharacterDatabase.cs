@@ -85,19 +85,13 @@ public class CharacterDatabase : MonoBehaviour
     public List<int> generateRandomCharacterIDs(List<int> validIDs)
     {
         List<int> resultIDs = new List<int>(validIDs);
-        int i = 0;
-        int t = resultIDs.Count;
-        int r = 0;
-        int p = 0;
-        resultIDs.AddRange(validIDs);
+        int index = 0;
 
-        while (i < t)
+        while (index < resultIDs.Count)
         {
-            r = Random.Range(i, resultIDs.Count);
-            p = resultIDs[i];
-            resultIDs[i] = resultIDs[r];
-            resultIDs[r] = p;
-            i++;
+            int randomIndex = Random.Range(index, resultIDs.Count);
+            (resultIDs[randomIndex], resultIDs[index]) = (resultIDs[index], resultIDs[randomIndex]);
+            index++;
         }
 
         return resultIDs.Take(20).ToList();
@@ -122,9 +116,9 @@ public class CharacterDatabase : MonoBehaviour
             return;
         }
 
-        if (currentCollection.hasValidCollection() == false)
+        if (currentCollection.hasValidCollection(out string error) == false)
         {
-            Debug.LogAssertion("Invalid collection!");
+            Debug.LogAssertionFormat("Invalid collection! {0}", error);
             return;
         }
 
