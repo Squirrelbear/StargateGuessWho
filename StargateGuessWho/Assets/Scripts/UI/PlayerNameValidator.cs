@@ -26,6 +26,13 @@ public class PlayerNameValidator : MonoBehaviour
         imageRef.color = new Color(1, 1, 1, 0);
         imageRef.sprite = null;
         IsValidated = false;
+
+        // Load the last valid name used and run validation
+        if (PlayerPrefs.HasKey("playername"))
+        {
+            targetField.text = PlayerPrefs.GetString("playername");
+            HandleNameChanged(targetField.text);
+        }
     }
 
     void OnEnable()
@@ -70,6 +77,9 @@ public class PlayerNameValidator : MonoBehaviour
             IsValidated = true;
             // Set the status based on the other validator.
             joinSessionButton.interactable = sessionCodeValidator.IsValidated;
+
+            // Save the name for next time
+            PlayerPrefs.SetString("playername", newName);
         }
     }
 }
