@@ -170,7 +170,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> getIDsMatchingAnyTag(CharacterTag[] tags)
+    public List<int> getIDsMatchingAnyTag(CharacterTag[] tags)
     {
         List<int> result = new List<int>();
         for (int i = 0; i < characters.Count; i++)
@@ -183,7 +183,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> getIDsMatchingSeries(SeriesTag series)
+    public List<int> getIDsMatchingSeries(SeriesTag series)
     {
         List<int> result = new List<int>();
         for (int i = 0; i < characters.Count; i++)
@@ -196,7 +196,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> getIDsMatchingRace(RaceTag raceTag)
+    public List<int> getIDsMatchingRace(RaceTag raceTag)
     {
         List<int> result = new List<int>();
         for (int i = 0; i < characters.Count; i++)
@@ -209,7 +209,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> getIDsMatchingAntagonist(bool isAntagonist)
+    public List<int> getIDsMatchingAntagonist(bool isAntagonist)
     {
         List<int> result = new List<int>();
         for (int i = 0; i < characters.Count; i++)
@@ -222,7 +222,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> collectIDsMatchingCondition(List<int> characterIDs, CharacterTag[] tags, bool matchAny)
+    public List<int> collectIDsMatchingCondition(List<int> characterIDs, CharacterTag[] tags, bool matchAny)
     {
         List<int> result = new List<int>();
         foreach (int characterID in characterIDs)
@@ -235,7 +235,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> collectIDsMatchingCondition(List<int> characterIDs, SeriesTag seriesTag, bool matchAny)
+    public List<int> collectIDsMatchingCondition(List<int> characterIDs, SeriesTag seriesTag, bool matchAny)
     {
         List<int> result = new List<int>();
         foreach (int characterID in characterIDs)
@@ -252,7 +252,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> collectIDsMatchingCondition(List<int> characterIDs, RaceTag raceTag, bool matchAny)
+    public List<int> collectIDsMatchingCondition(List<int> characterIDs, RaceTag raceTag, bool matchAny)
     {
         List<int> result = new List<int>();
         foreach (int characterID in characterIDs)
@@ -269,7 +269,7 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
-    List<int> collectIDsMatchingCondition(List<int> characterIDs, bool isAntagonist)
+    public List<int> collectIDsMatchingCondition(List<int> characterIDs, bool isAntagonist)
     {
         List<int> result = new List<int>();
         foreach (int characterID in characterIDs)

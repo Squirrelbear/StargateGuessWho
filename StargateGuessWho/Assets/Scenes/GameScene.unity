@@ -7758,6 +7758,7 @@ GameObject:
   - component: {fileID: 1249151874}
   - component: {fileID: 1249151876}
   - component: {fileID: 1249151877}
+  - component: {fileID: 1249151878}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -8173,6 +8174,25 @@ MonoBehaviour:
       data:
         characterID: 186
         character: {fileID: 11400000, guid: c5eca77e52e6c114cb800eba26e4eb04, type: 2}
+--- !u!114 &1249151878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249151873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c35c600f982ee4dba066e8f19f93ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filteredCharacterSets: []
+  database: {fileID: 1249151877}
+  testLoadButton: 0
+  testSaveButton: 0
+  testDeleteSaveButton: 0
+  references:
+    version: 1
 --- !u!1 &1295527807
 GameObject:
   m_ObjectHideFlags: 0
