@@ -11,6 +11,9 @@ public class FilteredCharacterSetManager : MonoBehaviour
     [SerializeField]
     private CharacterDatabase database;
 
+    [SerializeField]
+    private UnityEngine.UI.Dropdown filteredSetManagerDropdown;
+
     private void Start()
     {
         loadFromPlayerPrefs();
@@ -66,6 +69,19 @@ public class FilteredCharacterSetManager : MonoBehaviour
         }
 
         PlayerPrefs.SetString("charactersets", JsonUtility.ToJson(saveData));
+    }
+
+    public void populateHostDropdown()
+    {
+        filteredSetManagerDropdown.ClearOptions();
+
+        List<string> currentOptions = new List<string>();
+        foreach (var characterSet in filteredCharacterSets)
+        {
+            currentOptions.Add(characterSet.getName());
+        }
+
+        filteredSetManagerDropdown.AddOptions(currentOptions);
     }
 
     private void setToDefaultCharacterSets()

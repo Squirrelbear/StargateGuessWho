@@ -7181,6 +7181,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1249151878}
+        m_TargetAssemblyTypeName: FilteredCharacterSetManager, Assembly-CSharp
+        m_MethodName: populateHostDropdown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1034084249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8858,12 +8870,7 @@ MonoBehaviour:
         - id: 20
         - id: 21
     00000001:
-      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
-      data:
-        characterDatabase: {fileID: 1249151877}
-        characterIDs: 0100000003000000040000000a0000000b0000000e0000000f000000100000001100000015000000180000002200000024000000350000004100000044000000460000004700000048000000560000005d0000005e00000060000000670000006b000000720000007400000076000000770000007c0000007d0000007e0000008200000088000000890000008a0000008b0000008c0000008d0000008e0000008f00000093000000a6000000a9000000ab000000ac000000ae000000b2000000b4000000b7000000c1000000
-        characterSetName: All Antagonists
-        isCustom: 0
+      type: {class: , ns: , asm: }
     00000002:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
@@ -8984,10 +8991,11 @@ MonoBehaviour:
   - id: 4
   - id: 5
   database: {fileID: 1249151877}
+  filteredSetManagerDropdown: {fileID: 620344045}
   testLoadButton: 0
   testSaveButton: 0
   testDeleteSaveButton: 0
-  currentFilterSetIDToUse: 4
+  currentFilterSetIDToUse: 2
   testSetCurrentFilterSet: 0
   clearCurrentFilterSet: 0
   generateNextCharacterCollection: 0
