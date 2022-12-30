@@ -84,6 +84,12 @@ public class FilteredCharacterSetManager : MonoBehaviour
         filteredSetManagerDropdown.AddOptions(currentOptions);
     }
 
+    public void setCharacterSetFromDropdown()
+    {
+        FilteredCharacterSet setToUse = filteredCharacterSets[filteredSetManagerDropdown.value];
+        database.setCurrentFilterSet(setToUse);
+    }
+
     private void setToDefaultCharacterSets()
     {
         FilteredCharacterSet originalDefault = new FilteredCharacterSet(database, false);

@@ -292,23 +292,32 @@ public class CharacterDatabase : MonoBehaviour
         this.currentFilterSet = filteredCharacterSet;
     }
 
-    public void generateNextCharacterCollectionFromFilterSet()
+    public string generateNextCharacterCollectionFromFilterSet()
     {
         if (currentFilterSet == null)
         {
             // Probably not the host, just abort.
-            return;
+            return "";
         }
 
         currentCollection = currentFilterSet.generateCharacterCollection();
 
         makeCurrentCharacterCollectionReal();
 
-        // TODO: Notify server of change
+        return currentCollection.toHexIDString();
     }
 
     public void setCharacterCollectionFromHex(string hexdata)
     {
+        if (currentCollection != null)
+        {
+            string currentCollectionHex = currentCollection.toHexIDString();
+            if (currentCollectionHex == hexdata)
+            {
+                return;
+            }
+        }
+
         int[] characterIDs = CharacterCollection.hexStringToCharacterIDList(hexdata);
         // Prevent the random reordering because this is sent via the server as a fixed order
         currentCollection = createCharacterCollectionFromIDs(characterIDs, false);

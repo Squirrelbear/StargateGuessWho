@@ -13111,6 +13111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateManagerRef: {fileID: 1249151876}
   networkManagerRef: {fileID: 1249151874}
+  characterSetManagerRef: {fileID: 1249151878}
+  characterDatabaseRef: {fileID: 1249151877}
   sessionCodeTextObject: {fileID: 2036913712}
   nameInputField: {fileID: 813477428}
   sessionCodeInputField: {fileID: 650676105}
