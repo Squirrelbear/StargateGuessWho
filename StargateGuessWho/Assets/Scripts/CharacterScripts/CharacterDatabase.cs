@@ -16,7 +16,7 @@ public class CharacterDatabase : MonoBehaviour
     private CharacterCollection currentCollection;
 
     [SerializeReference]
-    private List<CharacterCollection> loadedCollections;
+    private FilteredCharacterSet currentFilterSet;
 
     [SerializeReference]
     private List<CharacterButton> characterButtons;
@@ -26,13 +26,16 @@ public class CharacterDatabase : MonoBehaviour
         return characters;
     }
 
-    public CharacterCollection createCharacterCollectionFromIDs(int[] ids)
+    public CharacterCollection createCharacterCollectionFromIDs(int[] ids, bool allowRandom = true)
     {
         Debug.Assert(ids != null);
         Debug.Assert(ids.Length >= 20);
 
         List<int> idsCopy = new List<int>(ids);
-        idsCopy = generateRandomCharacterIDs(idsCopy);
+        if (allowRandom)
+        {
+            idsCopy = generateRandomCharacterIDs(idsCopy);
+        }
 
         CharacterCollection collection = new CharacterCollection();
 
@@ -140,6 +143,8 @@ public class CharacterDatabase : MonoBehaviour
             Character character = currentCollection.characters[button.getGridID()].character;
             button.setToCharacter(character);
         }
+
+        Debug.LogFormat("Chars Set To: {0}", currentCollection.toHexIDString());
     }
 
     public static string[] getDefaultCharacterCollectionNames()
@@ -282,6 +287,35 @@ public class CharacterDatabase : MonoBehaviour
         return result;
     }
 
+    public void setCurrentFilterSet(FilteredCharacterSet filteredCharacterSet)
+    {
+        this.currentFilterSet = filteredCharacterSet;
+    }
+
+    public void generateNextCharacterCollectionFromFilterSet()
+    {
+        if (currentFilterSet == null)
+        {
+            // Probably not the host, just abort.
+            return;
+        }
+
+        currentCollection = currentFilterSet.generateCharacterCollection();
+
+        makeCurrentCharacterCollectionReal();
+
+        // TODO: Notify server of change
+    }
+
+    public void setCharacterCollectionFromHex(string hexdata)
+    {
+        int[] characterIDs = CharacterCollection.hexStringToCharacterIDList(hexdata);
+        // Prevent the random reordering because this is sent via the server as a fixed order
+        currentCollection = createCharacterCollectionFromIDs(characterIDs, false);
+
+        makeCurrentCharacterCollectionReal();
+    }
+
 #if UNITY_EDITOR
     private void testLoadDefaultCharacterCollection()
     {
@@ -289,9 +323,7 @@ public class CharacterDatabase : MonoBehaviour
 
         int[] characterIDs = createCharacterIDListFromNames(defaultCharacters);
 
-        CharacterCollection collection = createCharacterCollectionFromIDs(characterIDs);
-
-        currentCollection = collection;
+        currentCollection = createCharacterCollectionFromIDs(characterIDs, false);
     }
 
     private void testRandomiseCharacterCollection()
@@ -299,9 +331,7 @@ public class CharacterDatabase : MonoBehaviour
         List<int> allValidIDs = getListOfAllValidCharacterIDs();
         List<int> randomSelectionOnly = generateRandomCharacterIDs(allValidIDs);
         int[] characterIDs = randomSelectionOnly.ToArray();
-        CharacterCollection collection = createCharacterCollectionFromIDs(characterIDs);
-
-        currentCollection = collection;
+        currentCollection = createCharacterCollectionFromIDs(characterIDs);
     }
 
 

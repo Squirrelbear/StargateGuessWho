@@ -15,63 +15,67 @@ public class FilteredCharacterSet
     [SerializeField]
     private string characterSetName;
 
-    private FilteredCharacterSet()
+    [SerializeField]
+    private bool isCustom;
+
+    private FilteredCharacterSet(bool isCustom)
     {
         characterIDs = new List<int>();
         characterSetName = "None";
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase)
-        : this()
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, bool isCustom)
+        : this(isCustom)
     {
         this.characterDatabase = characterDatabase;
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase, List<int> characterIDs, string characterSetName)
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, List<int> characterIDs, string characterSetName, bool isCustom)
     {
         this.characterDatabase = characterDatabase;
         this.characterIDs = characterIDs;
         this.characterSetName = characterSetName;
+        this.isCustom = isCustom;
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase, SeriesTag tag)
-        : this(characterDatabase)
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, SeriesTag tag, bool isCustom)
+        : this(characterDatabase, isCustom)
     {
         characterIDs = characterDatabase.getIDsMatchingSeries(tag);
         setName("All Series " + EnumHelpers.getEnumString(tag));
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase, RaceTag tag)
-        : this(characterDatabase)
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, RaceTag tag, bool isCustom)
+        : this(characterDatabase, isCustom)
     {
         characterIDs = characterDatabase.getIDsMatchingRace(tag);
         setName("All " + EnumHelpers.getEnumString(tag));
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase, CharacterTag tag)
-        : this(characterDatabase)
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, CharacterTag tag, bool isCustom)
+        : this(characterDatabase, isCustom)
     {
         CharacterTag[] tagArray = { tag };
         characterIDs = characterDatabase.getIDsMatchingAnyTag(tagArray);
         setName("All " + EnumHelpers.getEnumString(tag));
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase, CharacterTag[] tags)
-        : this(characterDatabase)
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, CharacterTag[] tags, bool isCustom)
+        : this(characterDatabase, isCustom)
     {
         characterIDs = characterDatabase.getIDsMatchingAnyTag(tags);
         setName("Multiple Tags");
     }
 
-    public FilteredCharacterSet(CharacterDatabase characterDatabase, bool isAntagonist)
-        : this(characterDatabase)
+    public FilteredCharacterSet(CharacterDatabase characterDatabase, bool isAntagonist, bool isCustom)
+        : this(characterDatabase, isCustom)
     {
         characterIDs = characterDatabase.getIDsMatchingAntagonist(isAntagonist);
         setName("All " + (isAntagonist ? "Antagonists" : "Non-Antagonists"));
     }
 
     public FilteredCharacterSet(CharacterDatabase characterDatabase, FilteredCharacterSetManager.CharacterSetSaveFormat savedData)
-        : this(characterDatabase)
+        : this(characterDatabase, savedData.isCustom)
     {
         initFromNameList(savedData.characterSetName, savedData.characterNames);
     }
@@ -128,31 +132,12 @@ public class FilteredCharacterSet
         this.characterSetName = characterSetName;
     }
 
-    public string toJSONString()
-    {
-        string[] nameList = getAsNameList().ToArray();
-
-        return JsonUtility.ToJson(nameList);
-    }
-
-    public void loadFromJSONString(string characterSetName, string JSONString)
-    {
-        JSONNode node = JSONNode.Parse(JSONString);
-        
-        List<string> nameStrings = new List<string>();
-        foreach (var value in node.Values)
-        {
-            nameStrings.Add(value.ToString());
-        }
-
-        initFromNameList(characterSetName, nameStrings);
-    }
-
     public FilteredCharacterSetManager.CharacterSetSaveFormat toCharacterSetSaveFormat()
     {
         FilteredCharacterSetManager.CharacterSetSaveFormat result = new FilteredCharacterSetManager.CharacterSetSaveFormat();
         result.characterSetName = characterSetName;
         result.characterNames = new List<string>(getAsNameList());
+        result.isCustom = isCustom;
         return result;
     }
 

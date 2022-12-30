@@ -679,7 +679,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &134763147
 MonoBehaviour:
@@ -830,7 +830,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -110}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &164934261
 MonoBehaviour:
@@ -1946,7 +1946,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -105, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392050540
 MonoBehaviour:
@@ -2638,7 +2638,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 205}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &468078442
 MonoBehaviour:
@@ -3111,7 +3111,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -210, y: -5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &527048225
 MonoBehaviour:
@@ -3419,7 +3419,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 105, y: 205}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &575760072
 MonoBehaviour:
@@ -4193,7 +4193,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -105, y: 205}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &673213938
 MonoBehaviour:
@@ -5389,7 +5389,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 105, y: -5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &879135014
 MonoBehaviour:
@@ -5540,7 +5540,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -210, y: 205}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891354650
 MonoBehaviour:
@@ -5691,7 +5691,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -105, y: -110}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &898735142
 MonoBehaviour:
@@ -6745,7 +6745,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 210, y: 205}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050929873
 MonoBehaviour:
@@ -8020,7 +8020,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 09f458ab7afa52640b4d80be07560d88, type: 2}
   currentCollection:
     id: 0
-  loadedCollections: []
+  currentFilterSet:
+    id: 1
   characterButtons:
   - {fileID: 891354653}
   - {fileID: 673213938}
@@ -8054,7 +8055,6 @@ MonoBehaviour:
       type: {class: CharacterCollection, ns: , asm: Assembly-CSharp}
       data:
         characters:
-        - id: 1
         - id: 2
         - id: 3
         - id: 4
@@ -8074,102 +8074,110 @@ MonoBehaviour:
         - id: 18
         - id: 19
         - id: 20
+        - id: 21
     00000001:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 0100000003000000040000000a0000000b0000000e0000000f000000100000001100000015000000180000002200000024000000350000004100000044000000460000004700000048000000560000005d0000005e00000060000000670000006b000000720000007400000076000000770000007c0000007d0000007e0000008200000088000000890000008a0000008b0000008c0000008d0000008e0000008f00000093000000a6000000a9000000ab000000ac000000ae000000b2000000b4000000b7000000c1000000
+        characterSetName: All Antagonists
+        isCustom: 0
+    00000002:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 14
         character: {fileID: 11400000, guid: 270eb078d54e0434ba754b2ef8ca5f21, type: 2}
-    00000002:
+    00000003:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 16
         character: {fileID: 11400000, guid: b1ebad9ba7fcc1f4e97bc66c7fa6972f, type: 2}
-    00000003:
+    00000004:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 20
         character: {fileID: 11400000, guid: 6745f73396f83eb4197df2f615c0dace, type: 2}
-    00000004:
+    00000005:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 39
         character: {fileID: 11400000, guid: 0da706c5d3572ce4c91dbc6e9064a224, type: 2}
-    00000005:
+    00000006:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 53
         character: {fileID: 11400000, guid: 7e85f0c8c3242c641acdd2c0b5cee5a3, type: 2}
-    00000006:
+    00000007:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 57
         character: {fileID: 11400000, guid: 542413cf558ae7747a4b626eb577f8ca, type: 2}
-    00000007:
+    00000008:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 58
         character: {fileID: 11400000, guid: d20d36dd8ab4cce468779e78900156e9, type: 2}
-    00000008:
+    00000009:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 59
         character: {fileID: 11400000, guid: 3450b67f455d0bc4bbff77dc4e515fd6, type: 2}
-    00000009:
+    0000000A:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 65
         character: {fileID: 11400000, guid: 6b7e823b7dd26a94ab4858b49a921641, type: 2}
-    0000000A:
+    0000000B:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 76
         character: {fileID: 11400000, guid: e0489a44a0efc1d4eb72e17066b3d091, type: 2}
-    0000000B:
+    0000000C:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 77
         character: {fileID: 11400000, guid: a8236531800324a49824f39b85c57d6e, type: 2}
-    0000000C:
+    0000000D:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 84
         character: {fileID: 11400000, guid: 734b34b7a239c4244a1b6b7961663375, type: 2}
-    0000000D:
+    0000000E:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 103
         character: {fileID: 11400000, guid: f0174e5954e6ee442b2265990389a07f, type: 2}
-    0000000E:
+    0000000F:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 124
         character: {fileID: 11400000, guid: 6658039270cc6434c9045093fd7f4502, type: 2}
-    0000000F:
+    00000010:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 137
         character: {fileID: 11400000, guid: 58a544065f52cb0448e212c099280797, type: 2}
-    00000010:
+    00000011:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 156
         character: {fileID: 11400000, guid: f6f11441a407a0c48960cfdc248dc2f4, type: 2}
-    00000011:
+    00000012:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 160
         character: {fileID: 11400000, guid: 6b2d8a3d1fd411849bbfce812b1f21ee, type: 2}
-    00000012:
+    00000013:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 162
         character: {fileID: 11400000, guid: 4cacf3a1ea2f24b46968ff17d72d4a7d, type: 2}
-    00000013:
+    00000014:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 179
         character: {fileID: 11400000, guid: 274d730917c55794bb71faebce6bce36, type: 2}
-    00000014:
+    00000015:
       type: {class: CharacterDatabaseEntry, ns: , asm: Assembly-CSharp}
       data:
         characterID: 186
@@ -8186,13 +8194,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c35c600f982ee4dba066e8f19f93ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filteredCharacterSets: []
+  filteredCharacterSets:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
   database: {fileID: 1249151877}
   testLoadButton: 0
   testSaveButton: 0
   testDeleteSaveButton: 0
+  currentFilterSetIDToUse: 4
+  testSetCurrentFilterSet: 0
+  clearCurrentFilterSet: 0
+  generateNextCharacterCollection: 0
+  testHexValue: 5D6B46018AA6677C1856B2A98F8B0BAE0F745E0E
+  testSetCharacterCollectionFromHex: 0
   references:
     version: 1
+    00000000:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 0e00000010000000140000002700000035000000390000003a0000003b000000410000004c0000004d00000054000000670000007c000000890000009c000000a0000000a2000000b3000000ba000000
+        characterSetName: Simple SG1
+        isCustom: 0
+    00000001:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 030000000400000007000000080000000a0000000b0000000d0000000e0000000f00000010000000110000001200000014000000150000001600000018000000190000001b0000001c0000001d0000001e000000200000002100000024000000270000002d0000002e0000003100000032000000350000003700000038000000390000003a0000003b0000003c0000003e00000040000000410000004300000044000000460000004a0000004b0000004c0000004d00000054000000550000005600000057000000590000005c0000005d0000005e0000005f000000650000006700000068000000690000006a0000006b0000006c0000006d0000006f00000071000000730000007400000075000000760000007700000078000000790000007c0000007e0000007f00000080000000810000008200000083000000840000008700000088000000890000008a0000008b0000008c0000008d0000008e0000008f000000910000009200000093000000940000009700000098000000990000009a0000009c0000009f000000a0000000a2000000a6000000a7000000a8000000aa000000ab000000b0000000b2000000b3000000b4000000b6000000b8000000b9000000ba000000bd000000bf000000c0000000c1000000
+        characterSetName: All Series Stargate SG1
+        isCustom: 0
+    00000002:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 00000000010000000500000009000000130000001a0000001f00000022000000290000002a0000002c0000003000000033000000360000003f000000420000004500000047000000480000004e0000004f000000500000005200000053000000580000005a0000005b000000600000006100000062000000630000006400000070000000720000007a0000007d000000850000008600000090000000950000009b0000009e000000a1000000a3000000a4000000a5000000ac000000ae000000af000000b5000000b7000000be000000
+        characterSetName: All Series Stargate Atlantis
+        isCustom: 0
+    00000003:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 02000000060000000c00000017000000230000002500000026000000280000002b0000002f000000340000003d0000004900000051000000660000006e0000007b000000960000009d000000a9000000ad000000b1000000bb000000bc000000
+        characterSetName: All Series Stargate Universe
+        isCustom: 0
+    00000004:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 0100000003000000040000000a0000000b0000000e0000000f000000100000001100000015000000180000002200000024000000350000004100000044000000460000004700000048000000560000005d0000005e00000060000000670000006b000000720000007400000076000000770000007c0000007d0000007e0000008200000088000000890000008a0000008b0000008c0000008d0000008e0000008f00000093000000a6000000a9000000ab000000ac000000ae000000b2000000b4000000b7000000c1000000
+        characterSetName: All Antagonists
+        isCustom: 0
+    00000005:
+      type: {class: FilteredCharacterSet, ns: , asm: Assembly-CSharp}
+      data:
+        characterDatabase: {fileID: 1249151877}
+        characterIDs: 000000000200000005000000060000000700000008000000090000000c0000000d0000001200000013000000140000001600000017000000190000001a0000001b0000001c0000001d0000001e0000001f00000020000000210000002300000025000000260000002700000028000000290000002a0000002b0000002c0000002d0000002e0000002f0000003000000031000000320000003300000034000000360000003700000038000000390000003a0000003b0000003c0000003d0000003e0000003f00000040000000420000004300000045000000490000004a0000004b0000004c0000004d0000004e0000004f0000005000000051000000520000005300000054000000550000005700000058000000590000005a0000005b0000005c0000005f00000061000000620000006300000064000000650000006600000068000000690000006a0000006c0000006d0000006e0000006f0000007000000071000000730000007500000078000000790000007a0000007b0000007f000000800000008100000083000000840000008500000086000000870000009000000091000000920000009400000095000000960000009700000098000000990000009a0000009b0000009c0000009d0000009e0000009f000000a0000000a1000000a2000000a3000000a4000000a5000000a7000000a8000000aa000000ad000000af000000b0000000b1000000b3000000b5000000b6000000b8000000b9000000ba000000bb000000bc000000bd000000be000000bf000000c0000000
+        characterSetName: All Non-Antagonists
+        isCustom: 0
 --- !u!1 &1295527807
 GameObject:
   m_ObjectHideFlags: 0
@@ -8323,7 +8385,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -320, y: -86}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1317514071
 MonoBehaviour:
@@ -9045,7 +9107,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 210, y: -110}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1449953929
 MonoBehaviour:
@@ -9363,7 +9425,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 105, y: -110}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1454673239
 MonoBehaviour:
@@ -9672,7 +9734,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 210, y: -5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1488077939
 MonoBehaviour:
@@ -10357,7 +10419,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1580316531
 MonoBehaviour:
@@ -11123,7 +11185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1689414229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11614,7 +11676,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 210, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1754031600
 MonoBehaviour:
@@ -12581,7 +12643,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -210, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1860177420
 MonoBehaviour:
@@ -13455,7 +13517,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -105, y: -5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2029293996
 MonoBehaviour:
@@ -14067,7 +14129,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -210, y: -110}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2123028060
 MonoBehaviour:
@@ -14216,7 +14278,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -319.99994, y: 125}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127003000
 MonoBehaviour:
@@ -14572,7 +14634,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 105, y: 100}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2137624525
 MonoBehaviour:

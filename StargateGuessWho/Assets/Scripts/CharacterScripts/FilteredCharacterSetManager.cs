@@ -20,6 +20,7 @@ public class FilteredCharacterSetManager : MonoBehaviour
     public class CharacterSetSaveFormat
     {
         public string characterSetName;
+        public bool isCustom;
         public List<string> characterNames;
     }
 
@@ -69,24 +70,24 @@ public class FilteredCharacterSetManager : MonoBehaviour
 
     private void setToDefaultCharacterSets()
     {
-        FilteredCharacterSet originalDefault = new FilteredCharacterSet(database);
+        FilteredCharacterSet originalDefault = new FilteredCharacterSet(database, false);
         string[] originalDefaultNames = CharacterDatabase.getDefaultCharacterCollectionNames();
         originalDefault.initFromNameList("Simple SG1", new List<string>(originalDefaultNames));
         filteredCharacterSets.Add(originalDefault);
 
-        FilteredCharacterSet filteredSG1Only = new FilteredCharacterSet(database, SeriesTag.SG1);
+        FilteredCharacterSet filteredSG1Only = new FilteredCharacterSet(database, SeriesTag.SG1, false);
         filteredCharacterSets.Add(filteredSG1Only);
 
-        FilteredCharacterSet filteredSGAOnly = new FilteredCharacterSet(database, SeriesTag.SGA);
+        FilteredCharacterSet filteredSGAOnly = new FilteredCharacterSet(database, SeriesTag.SGA, false);
         filteredCharacterSets.Add(filteredSGAOnly);
 
-        FilteredCharacterSet filteredSGUOnly = new FilteredCharacterSet(database, SeriesTag.SGU);
+        FilteredCharacterSet filteredSGUOnly = new FilteredCharacterSet(database, SeriesTag.SGU, false);
         filteredCharacterSets.Add(filteredSGUOnly);
 
-        FilteredCharacterSet filteredAntagonistOnly = new FilteredCharacterSet(database, true);
+        FilteredCharacterSet filteredAntagonistOnly = new FilteredCharacterSet(database, true, false);
         filteredCharacterSets.Add(filteredAntagonistOnly);
 
-        FilteredCharacterSet filteredNotAntagonistOnly = new FilteredCharacterSet(database, false);
+        FilteredCharacterSet filteredNotAntagonistOnly = new FilteredCharacterSet(database, false, false);
         filteredCharacterSets.Add(filteredNotAntagonistOnly);
     }
 
@@ -94,6 +95,12 @@ public class FilteredCharacterSetManager : MonoBehaviour
     public bool testLoadButton = false;
     public bool testSaveButton = false;
     public bool testDeleteSaveButton = false;
+    public int currentFilterSetIDToUse = 0;
+    public bool testSetCurrentFilterSet = false;
+    public bool clearCurrentFilterSet = false;
+    public bool generateNextCharacterCollection = false;
+    public string testHexValue = "";
+    public bool testSetCharacterCollectionFromHex = false;
 
     private void OnValidate()
     {
@@ -113,6 +120,34 @@ public class FilteredCharacterSetManager : MonoBehaviour
         {
             clearSavedPlayerPrefs();
             testDeleteSaveButton = false;
+        }
+
+        if (testSetCurrentFilterSet)
+        {
+            database.setCurrentFilterSet(filteredCharacterSets[currentFilterSetIDToUse]);
+
+            testSetCurrentFilterSet = false;
+        }
+
+        if (clearCurrentFilterSet)
+        {
+            database.setCurrentFilterSet(null);
+
+            clearCurrentFilterSet = false;
+        }
+
+        if (generateNextCharacterCollection)
+        {
+            database.generateNextCharacterCollectionFromFilterSet();
+
+            generateNextCharacterCollection = false;
+        }
+
+        if (testSetCharacterCollectionFromHex)
+        {
+            database.setCharacterCollectionFromHex(testHexValue);
+
+            testSetCharacterCollectionFromHex = false;
         }
     }
 

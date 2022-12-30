@@ -88,7 +88,7 @@ public class CharacterCollection
         return true;
     }
 
-    static int[] hexStringToCharacterIDList(string idsString)
+    public static int[] hexStringToCharacterIDList(string idsString)
     {
         // Based on: https://stackoverflow.com/questions/23130382/split-string-by-character-count-and-store-in-string-array
         var split = idsString.Select((c, index) => new { c, index })
