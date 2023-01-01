@@ -24,18 +24,24 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     private GameStateManager gameStateManager;
 
-    private string serverURL = "SET THIS VARIABLE TO YOUR SERVER";
+    [SerializeField]
+    private string serverURL = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(GetWebData(serverURL, "?action=createPlayer&playerName=Peter"));
+        setServerURL(PlayerPrefs.GetString("targetserver", ""));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setServerURL(string serverURL)
     {
+        this.serverURL = serverURL;
 
+        // Reset all the network properties back to default because they can't be trusted
+        playerAuth = "";
+        sessionCode = "";
+        playerName = "";
+        gameNum = 0;
     }
 
     public void CreatePlayerOnServer(string playerName)
