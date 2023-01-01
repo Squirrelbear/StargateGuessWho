@@ -97,6 +97,9 @@ public class FilteredCharacterSetManager : MonoBehaviour
         originalDefault.initFromNameList("Simple SG1", new List<string>(originalDefaultNames));
         filteredCharacterSets.Add(originalDefault);
 
+        FilteredCharacterSet everything = new FilteredCharacterSet(database, database.getListOfAllValidCharacterIDs(), "All Characters", false);
+        filteredCharacterSets.Add(everything);
+
         FilteredCharacterSet filteredSG1Only = new FilteredCharacterSet(database, SeriesTag.SG1, false);
         filteredCharacterSets.Add(filteredSG1Only);
 
