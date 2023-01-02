@@ -51,6 +51,8 @@ public class ConnectingServerScreen : MonoBehaviour
     {
         if (request is NetworkMessage.CreatePlayerMessage)
         {
+            networkManagerRef.IsHost = joiningAsHost;
+
             if (joiningAsHost)
             {
                 Debug.Log("Player created... Creating Session...");

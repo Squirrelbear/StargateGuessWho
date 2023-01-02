@@ -13450,6 +13450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStateManagerRef: {fileID: 1249151876}
   networkManagerRef: {fileID: 1249151874}
+  characterDatabaseRef: {fileID: 1249151877}
   otherPlayerStatusText: {fileID: 353028782}
   otherPlayerStatusPrefix: {fileID: 1329825617}
   otherPlayerFailedGuess: {fileID: 1404080528}

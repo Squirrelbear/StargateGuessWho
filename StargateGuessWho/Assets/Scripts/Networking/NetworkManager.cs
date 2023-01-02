@@ -11,6 +11,7 @@ public class NetworkManager : MonoBehaviour
     public string sessionCode;
     public string playerName;
     public int gameNum;
+    public bool IsHost { get; set; }
 
     public delegate void ServerResponseEvent(NetworkMessage.MessageTemplate request, JSONNode result, bool isError, string errorMessage);
     public static event ServerResponseEvent OnServerResponse;

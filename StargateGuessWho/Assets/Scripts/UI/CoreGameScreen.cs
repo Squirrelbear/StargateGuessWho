@@ -13,6 +13,9 @@ public class CoreGameScreen : MonoBehaviour
     private NetworkManager networkManagerRef;
 
     [SerializeField]
+    private CharacterDatabase characterDatabaseRef;
+
+    [SerializeField]
     private Text otherPlayerStatusText;
 
     [SerializeField]
@@ -66,6 +69,9 @@ public class CoreGameScreen : MonoBehaviour
     [SerializeField]
     private GameObject endGameScreen;
 
+    [SerializeField]
+    private string cachedNextHexData = "";
+
     private void OnEnable()
     {
         NetworkManager.OnServerResponse += HandleNetworkResponse;
@@ -89,6 +95,15 @@ public class CoreGameScreen : MonoBehaviour
         {
             JSONNode player0 = result[0];
             JSONNode player1 = result[1];
+
+            // Force update to the current character collection
+            JSONNode settingsData = result[2];
+            string hexData = settingsData["characterCollection"];
+            if (hexData != cachedNextHexData)
+            {
+                Debug.Log("Hex data queued for next round.");
+                cachedNextHexData = hexData;
+            }
 
             if(gameStateManagerRef.gameState == GameStateManager.GameState.ChooseCharacter)
             {
@@ -140,6 +155,9 @@ public class CoreGameScreen : MonoBehaviour
                 {
                     EndRound(player0["name"] == networkManagerRef.playerName ? player0 : player1,
                         player0["name"] == networkManagerRef.playerName ? player1 : player0);
+
+                    // Update the game view ready for the next round
+                    characterDatabaseRef.setCharacterCollectionFromHex(cachedNextHexData);
                 }
             }
         } 
@@ -151,6 +169,12 @@ public class CoreGameScreen : MonoBehaviour
                 if (yourGuessID != otherSolutionID)
                 {
                     failedGuessTipText.SetActive(true);
+                }
+
+                if (networkManagerRef.IsHost)
+                {
+                    string hexData = characterDatabaseRef.generateNextCharacterCollectionFromFilterSet(false);
+                    networkManagerRef.SendHostCharacterSetChange(hexData);
                 }
             }
         }

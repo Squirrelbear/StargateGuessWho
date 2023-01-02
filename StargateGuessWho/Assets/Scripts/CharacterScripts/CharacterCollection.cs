@@ -101,7 +101,16 @@ public class CharacterCollection
 
         foreach (var hexStr in split)
         {
-            result[index] = int.Parse(hexStr, System.Globalization.NumberStyles.HexNumber);
+            try
+            {
+                result[index] = int.Parse(hexStr, System.Globalization.NumberStyles.HexNumber);
+            }
+            catch (System.Exception)
+            {
+
+                Debug.LogErrorFormat("Failed to parse character collection: [{0}] = {1}", index, hexStr);
+            }
+            
             index++;
         }
 

@@ -292,7 +292,7 @@ public class CharacterDatabase : MonoBehaviour
         this.currentFilterSet = filteredCharacterSet;
     }
 
-    public string generateNextCharacterCollectionFromFilterSet()
+    public string generateNextCharacterCollectionFromFilterSet(bool makeRealNow = true)
     {
         if (currentFilterSet == null)
         {
@@ -300,11 +300,21 @@ public class CharacterDatabase : MonoBehaviour
             return "";
         }
 
-        currentCollection = currentFilterSet.generateCharacterCollection();
+        if (makeRealNow)
+        {
+            currentCollection = currentFilterSet.generateCharacterCollection();
 
-        makeCurrentCharacterCollectionReal();
+            makeCurrentCharacterCollectionReal();
 
-        return currentCollection.toHexIDString();
+            return currentCollection.toHexIDString();
+        }
+        else
+        {
+            // Used for the host to choose new character sets without prematurely changing their view
+            CharacterCollection nextCollection = currentFilterSet.generateCharacterCollection();
+
+            return nextCollection.toHexIDString();
+        }
     }
 
     public void setCharacterCollectionFromHex(string hexdata)
