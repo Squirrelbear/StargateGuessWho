@@ -82,12 +82,20 @@ public class FilteredCharacterSetManager : MonoBehaviour
         }
 
         filteredSetManagerDropdown.AddOptions(currentOptions);
+
+        int characterSetPref = PlayerPrefs.GetInt("charactersetpref", 0);
+        if (characterSetPref < 0 || characterSetPref >= currentOptions.Count)
+        {
+            characterSetPref = 0;
+        }
+        filteredSetManagerDropdown.value = characterSetPref;
     }
 
     public void setCharacterSetFromDropdown()
     {
         FilteredCharacterSet setToUse = filteredCharacterSets[filteredSetManagerDropdown.value];
         database.setCurrentFilterSet(setToUse);
+        PlayerPrefs.SetInt("charactersetpref", filteredSetManagerDropdown.value);
     }
 
     private void setToDefaultCharacterSets()
