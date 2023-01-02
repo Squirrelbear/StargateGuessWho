@@ -81,6 +81,8 @@ public class ConnectingServerScreen : MonoBehaviour
         else if (request is NetworkMessage.JoinServerMessage)
         {
             Debug.Log("Session joined...");
+            string hexData = result["characterCollection"];
+            characterDatabaseRef.setCharacterCollectionFromHex(hexData);
             // TODO need to collect data about other player
             gameStateManagerRef.TransitionToChooseCharacter();
         }
@@ -91,8 +93,7 @@ public class ConnectingServerScreen : MonoBehaviour
             if(result.AsArray.Count == 3)
             {
                 string hexData = result[2]["characterCollection"];
-                CharacterDatabase database = GetComponent<CharacterDatabase>();
-                database.setCharacterCollectionFromHex(hexData);
+                characterDatabaseRef.setCharacterCollectionFromHex(hexData);
 
                 // TODO need to collect data about other player 
                 gameStateManagerRef.TransitionToChooseCharacter();
