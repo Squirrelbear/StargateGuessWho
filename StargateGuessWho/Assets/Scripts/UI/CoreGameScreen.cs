@@ -185,6 +185,19 @@ public class CoreGameScreen : MonoBehaviour
         otherPlayerStatusText.text = count + "/" + data["characterStates"].Count;
     }
 
+    CharacterButton getCharacterButtonForID(int id)
+    {
+        foreach (CharacterButton button in characterButtons)
+        {
+            if (button.getGridID() == id)
+            {
+                return button;
+            }
+        }
+
+        return null;
+    }
+
     private void EndRound(JSONNode yourPlayer, JSONNode otherPlayer)
     {
         endGameScreen.SetActive(true);
@@ -194,13 +207,17 @@ public class CoreGameScreen : MonoBehaviour
 
         int yourChosenID = yourPlayer["chosenID"];
         int yourGuessID = yourPlayer["guessID"];
-        endScreenChosenYours.SetSelectedCharacter(yourChosenID, characterButtons[yourChosenID].getSprite(), characterButtons[yourChosenID].getCharacterName());
-        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, characterButtons[yourGuessID].getSprite(), characterButtons[yourGuessID].getCharacterName());
+        CharacterButton yourChosenCharacter = getCharacterButtonForID(yourChosenID);
+        CharacterButton yourGuessedCharacter = getCharacterButtonForID(yourGuessID);
+        endScreenChosenYours.SetSelectedCharacter(yourChosenID, yourChosenCharacter.getSprite(), yourChosenCharacter.getCharacterName());
+        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, yourGuessedCharacter.getSprite(), yourGuessedCharacter.getCharacterName());
 
         int otherChosenID = otherPlayer["chosenID"];
         int otherGuessID = otherPlayer["guessID"];
-        endScreenChosenOther.SetSelectedCharacter(otherChosenID, characterButtons[otherChosenID].getSprite(), characterButtons[otherChosenID].getCharacterName());
-        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, characterButtons[otherGuessID].getSprite(), characterButtons[otherGuessID].getCharacterName());
+        CharacterButton otherChosenCharacter = getCharacterButtonForID(otherChosenID);
+        CharacterButton otherGuessedCharacter = getCharacterButtonForID(otherGuessID);
+        endScreenChosenOther.SetSelectedCharacter(otherChosenID, otherChosenCharacter.getSprite(), otherChosenCharacter.getCharacterName());
+        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, otherGuessedCharacter.getSprite(), otherGuessedCharacter.getCharacterName());
 
         if((yourChosenID == otherGuessID && otherChosenID == yourGuessID)
             || (yourChosenID != otherGuessID && otherChosenID != yourGuessID))
