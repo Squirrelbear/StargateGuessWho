@@ -36,3 +36,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Logs
+*.log
+StargateGuessWho/Logs/shadercompiler-UnityShaderCompiler.exe0.log

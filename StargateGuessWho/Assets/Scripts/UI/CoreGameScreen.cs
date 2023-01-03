@@ -13,6 +13,9 @@ public class CoreGameScreen : MonoBehaviour
     private NetworkManager networkManagerRef;
 
     [SerializeField]
+    private CharacterDatabase characterDatabaseRef;
+
+    [SerializeField]
     private Text otherPlayerStatusText;
 
     [SerializeField]
@@ -66,6 +69,9 @@ public class CoreGameScreen : MonoBehaviour
     [SerializeField]
     private GameObject endGameScreen;
 
+    [SerializeField]
+    private string cachedNextHexData = "";
+
     private void OnEnable()
     {
         NetworkManager.OnServerResponse += HandleNetworkResponse;
@@ -89,6 +95,15 @@ public class CoreGameScreen : MonoBehaviour
         {
             JSONNode player0 = result[0];
             JSONNode player1 = result[1];
+
+            // Force update to the current character collection
+            JSONNode settingsData = result[2];
+            string hexData = settingsData["characterCollection"];
+            if (hexData != cachedNextHexData)
+            {
+                Debug.Log("Hex data queued for next round.");
+                cachedNextHexData = hexData;
+            }
 
             if(gameStateManagerRef.gameState == GameStateManager.GameState.ChooseCharacter)
             {
@@ -140,6 +155,9 @@ public class CoreGameScreen : MonoBehaviour
                 {
                     EndRound(player0["name"] == networkManagerRef.playerName ? player0 : player1,
                         player0["name"] == networkManagerRef.playerName ? player1 : player0);
+
+                    // Update the game view ready for the next round
+                    characterDatabaseRef.setCharacterCollectionFromHex(cachedNextHexData);
                 }
             }
         } 
@@ -151,6 +169,12 @@ public class CoreGameScreen : MonoBehaviour
                 if (yourGuessID != otherSolutionID)
                 {
                     failedGuessTipText.SetActive(true);
+                }
+
+                if (networkManagerRef.IsHost)
+                {
+                    string hexData = characterDatabaseRef.generateNextCharacterCollectionFromFilterSet(false);
+                    networkManagerRef.SendHostCharacterSetChange(hexData);
                 }
             }
         }
@@ -185,6 +209,19 @@ public class CoreGameScreen : MonoBehaviour
         otherPlayerStatusText.text = count + "/" + data["characterStates"].Count;
     }
 
+    CharacterButton getCharacterButtonForID(int id)
+    {
+        foreach (CharacterButton button in characterButtons)
+        {
+            if (button.getGridID() == id)
+            {
+                return button;
+            }
+        }
+
+        return null;
+    }
+
     private void EndRound(JSONNode yourPlayer, JSONNode otherPlayer)
     {
         endGameScreen.SetActive(true);
@@ -194,13 +231,17 @@ public class CoreGameScreen : MonoBehaviour
 
         int yourChosenID = yourPlayer["chosenID"];
         int yourGuessID = yourPlayer["guessID"];
-        endScreenChosenYours.SetSelectedCharacter(yourChosenID, characterButtons[yourChosenID].getSprite());
-        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, characterButtons[yourGuessID].getSprite());
+        CharacterButton yourChosenCharacter = getCharacterButtonForID(yourChosenID);
+        CharacterButton yourGuessedCharacter = getCharacterButtonForID(yourGuessID);
+        endScreenChosenYours.SetSelectedCharacter(yourChosenID, yourChosenCharacter.getSprite(), yourChosenCharacter.getCharacterName());
+        endScreenGuessedYours.SetSelectedCharacter(yourGuessID, yourGuessedCharacter.getSprite(), yourGuessedCharacter.getCharacterName());
 
         int otherChosenID = otherPlayer["chosenID"];
         int otherGuessID = otherPlayer["guessID"];
-        endScreenChosenOther.SetSelectedCharacter(otherChosenID, characterButtons[otherChosenID].getSprite());
-        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, characterButtons[otherGuessID].getSprite());
+        CharacterButton otherChosenCharacter = getCharacterButtonForID(otherChosenID);
+        CharacterButton otherGuessedCharacter = getCharacterButtonForID(otherGuessID);
+        endScreenChosenOther.SetSelectedCharacter(otherChosenID, otherChosenCharacter.getSprite(), otherChosenCharacter.getCharacterName());
+        endScreenGuessedOther.SetSelectedCharacter(otherGuessID, otherGuessedCharacter.getSprite(), otherGuessedCharacter.getCharacterName());
 
         if((yourChosenID == otherGuessID && otherChosenID == yourGuessID)
             || (yourChosenID != otherGuessID && otherChosenID != yourGuessID))

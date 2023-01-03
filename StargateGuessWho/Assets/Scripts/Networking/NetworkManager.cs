@@ -11,6 +11,7 @@ public class NetworkManager : MonoBehaviour
     public string sessionCode;
     public string playerName;
     public int gameNum;
+    public bool IsHost { get; set; }
 
     public delegate void ServerResponseEvent(NetworkMessage.MessageTemplate request, JSONNode result, bool isError, string errorMessage);
     public static event ServerResponseEvent OnServerResponse;
@@ -24,18 +25,24 @@ public class NetworkManager : MonoBehaviour
     [SerializeField]
     private GameStateManager gameStateManager;
 
-    private string serverURL = "SET THIS VARIABLE TO YOUR SERVER";
+    [SerializeField]
+    private string serverURL = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(GetWebData(serverURL, "?action=createPlayer&playerName=Peter"));
+        setServerURL(PlayerPrefs.GetString("targetserver", ""));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setServerURL(string serverURL)
     {
+        this.serverURL = serverURL;
 
+        // Reset all the network properties back to default because they can't be trusted
+        playerAuth = "";
+        sessionCode = "";
+        playerName = "";
+        gameNum = 0;
     }
 
     public void CreatePlayerOnServer(string playerName)
@@ -74,6 +81,12 @@ public class NetworkManager : MonoBehaviour
     public void GetSessionState()
     {
         var message = new NetworkMessage.GetStateMessage(playerAuth, sessionCode);
+        StartCoroutine(GetWebData(serverURL, message));
+    }
+
+    public void SendHostCharacterSetChange(string characterSet)
+    {
+        var message = new NetworkMessage.SetCharacterCollectionMessage(playerAuth, sessionCode, characterSet);
         StartCoroutine(GetWebData(serverURL, message));
     }
 

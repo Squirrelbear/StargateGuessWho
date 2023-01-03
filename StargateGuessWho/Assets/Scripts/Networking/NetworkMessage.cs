@@ -115,4 +115,24 @@ public class NetworkMessage
                 + "&sessionCode=" + SessionCode;
         }
     }
+
+    public class SetCharacterCollectionMessage : MessageTemplate
+    {
+        public SetCharacterCollectionMessage(string playerAuth, string sessionCode, string characterSet)
+        {
+            PlayerAuth = playerAuth;
+            SessionCode = sessionCode;
+            CharacterSet = characterSet;
+        }
+
+        public string PlayerAuth { get; set; }
+        public string SessionCode { get; set; }
+        public string CharacterSet { get; set; }
+
+        public override string GetMessage()
+        {
+            return "action=setCharacterCollection&playerAuth=" + PlayerAuth
+                + "&sessionCode=" + SessionCode + "&characterSet=" + CharacterSet;
+        }
+    }
 }

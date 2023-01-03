@@ -13,8 +13,13 @@ public class SelectedCharacter : MonoBehaviour
 
     public int CharacterID { get; private set; }
 
+    public string CharacterName { get; private set; }
+
     [SerializeField]
     private Image selectedImageRef;
+
+    [SerializeField]
+    private Text nameTextRef;
 
     [SerializeField]
     private bool resetOnEnable = true;
@@ -28,16 +33,18 @@ public class SelectedCharacter : MonoBehaviour
         }
     }
 
-    public void SetSelectedCharacter(int characterID, Sprite characterImage)
+    public void SetSelectedCharacter(int characterID, Sprite characterImage, string characterName)
     {
         this.CharacterID = characterID;
         selectedImageRef.sprite = characterImage;
+        CharacterName = characterName;
+        nameTextRef.text = characterName;
         onCharacterChanged?.Invoke(CharacterID);
     }
 
     public void ResetSelectedCharacter()
     {
-        SetSelectedCharacter(-1, defaultImage);
+        SetSelectedCharacter(-1, defaultImage, "None Selected");
     }
 
 

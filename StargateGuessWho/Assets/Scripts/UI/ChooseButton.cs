@@ -27,7 +27,7 @@ public class ChooseButton : MonoBehaviour
 
     public void HandleButtonPress()
     {
-        yourCharacter.SetSelectedCharacter(selected.CharacterID, selected.GetComponent<Image>().sprite);
+        yourCharacter.SetSelectedCharacter(selected.CharacterID, selected.GetComponent<Image>().sprite, selected.CharacterName);
         if(selected.CharacterID != -1)
         {
             coreGameRef.HandleSelectionChoice(selected.CharacterID);

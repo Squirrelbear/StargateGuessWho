@@ -45,6 +45,8 @@ public class SessionCodeValidator : MonoBehaviour
 
     public void HandleNameChanged(string newName)
     {
+        targetField.text = newName.ToUpper();
+
         if (newName.Length == 0)
         {
             imageRef.color = new Color(1, 1, 1, 0);
