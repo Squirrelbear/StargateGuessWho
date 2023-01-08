@@ -15,10 +15,27 @@ public class ToggleButton : MonoBehaviour
 
     public void handleClick()
     {
-        if (selected.CharacterID == -1) 
+        if (selected.CharacterID == -1)
+        {
             return;
+        }
 
-        characterButtons[selected.CharacterID].SetEliminated(!characterButtons[selected.CharacterID].IsEliminated);
-        coreGameScreenRef.HandleSelectionToggle(selected.CharacterID, !characterButtons[selected.CharacterID].IsEliminated);
+        CharacterButton characterButton = null;
+        foreach (CharacterButton button in characterButtons)
+        {
+            if (selected.CharacterID == button.getGridID())
+            {
+                characterButton = button; 
+                break;
+            }
+        }
+
+        if (characterButton == null)
+        {
+            return;
+        }
+
+        characterButton.SetEliminated(!characterButton.IsEliminated);
+        coreGameScreenRef.HandleSelectionToggle(selected.CharacterID, !characterButton.IsEliminated);
     }
 }
